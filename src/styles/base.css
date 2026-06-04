@@ -1,0 +1,116 @@
+/* ============================================================
+   BASE / SEMANTIC TOKENS — light-mode defaults
+   Replace this file with your own base.css content.
+   ============================================================ */
+:root {
+    /* ── Surface ── */
+    --surface-page: var(--gray-75);
+    --surface-primary: var(--gray-0);
+    --surface-secondary: var(--gray-50);
+    --surface-elevated: var(--gray-0);
+    --surface-invert: var(--gray-900);
+    --backdrop: rgba(0, 0, 0, 0.5);
+
+    /* ── App chrome ── */
+    --app-bg: var(--gray-75);
+    --app-border: #e0e0e0;
+
+    /* ── Shadow ── */
+    --ds-shadow-2xs: 0 1px rgb(0 0 0 / 0.03);
+    --ds-shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.06);
+    --ds-shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.06), 0 1px 2px -1px rgb(0 0 0 / 0.06);
+    --ds-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.06), 0 1px 2px -1px rgb(0 0 0 / 0.06);
+    --ds-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.06), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+    --ds-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.08);
+    --ds-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --ds-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.13);
+
+    /* ── Inset Shadow ── */
+    --ds-inset-shadow-hairline: inset 0 0 0 1px var(--alpha-10);
+
+    /* ── Text ── */
+    --text-emphasis: var(--gray-1000);
+    --text-default: var(--gray-800);
+    --text-muted: var(--gray-500);
+    --text-subtle: var(--gray-400);
+    --text-inverse: #fff;
+
+    /* ── Border (alpha-based — adapts to any surface automatically) ── */
+    --border-default: var(--alpha-12);
+    --border-muted: var(--alpha-08);
+    --border-subtle: var(--alpha-06);
+    --border-emphasis: var(--alpha-20);
+
+    /* ── Ring ── */
+    --ring: var(--blue-600);
+
+    /* ── Control (shared across inputs, selects, textareas) ── */
+    --control-border: var(--alpha-16);
+    --control-border-hover: var(--alpha-25);
+    --control-border-focus: var(--alpha-50);
+    --control-border-invalid: var(--red-500);
+
+    --control-bg-hover: var(--alpha-06);
+    --control-bg-active: var(--alpha-08);
+    --control-bg-selected: var(--alpha-08);
+    --control-bg-checked: var(--bg-primary-solid);
+
+    --control-text: var(--text-default);
+    --control-text-invalid: var(--text-danger-soft);
+    --control-text-checked: var(--text-inverse);
+    --control-placeholder: var(--text-subtle);
+
+    --control-ring: var(--alpha-10);
+    --control-ring-invalid: color-mix(in oklab, var(--red-400) 30%, transparent);
+}
+
+[data-theme='dark'] {
+    /* ── Surface ── */
+    --surface-page: var(--gray-50);
+    --surface-primary: var(--gray-200);
+    --surface-secondary: var(--gray-100);
+    --surface-elevated: var(--gray-300);
+    --surface-invert: var(--gray-950);
+
+    /* ── App chrome ── */
+    --app-bg: var(--gray-50);
+    --app-border: #383838;
+
+    /* ── Shadow: 3x alpha for dark backgrounds ── */
+    --ds-shadow-2xs: 0 1px rgb(0 0 0 / 0.15);
+    --ds-shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.24);
+    --ds-shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.24), 0 1px 2px -1px rgb(0 0 0 / 0.24);
+    --ds-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.24), 0 1px 2px -1px rgb(0 0 0 / 0.24);
+    --ds-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.24), 0 2px 4px -2px rgb(0 0 0 / 0.24);
+    --ds-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+    --ds-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.36), 0 8px 10px -6px rgb(0 0 0 / 0.36);
+    --ds-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.45);
+
+    /* ── Inset Shadow ── */
+    --ds-inset-shadow-hairline: inset 0 0 0 1px var(--alpha-08);
+
+    /* ── Text ── */
+    --text-emphasis: var(--gray-1000);
+    --text-default: var(--gray-800);
+    --text-muted: var(--gray-700);
+    --text-subtle: var(--gray-600);
+    --text-inverse: #0d0d0d;
+
+    /* ── Border ── */
+    --border-default: var(--alpha-12);
+    --border-muted: var(--alpha-08);
+    --border-subtle: var(--alpha-06);
+    --border-emphasis: var(--alpha-20);
+
+    /* ── Ring ── */
+    --ring: var(--blue-400);
+
+    /* ── Control ── */
+    --control-border: var(--alpha-16);
+    --control-border-hover: var(--alpha-30);
+    --control-border-focus: var(--alpha-50);
+    --control-border-invalid: var(--red-400);
+    --control-bg-hover: var(--alpha-08);
+    --control-bg-active: var(--alpha-12);
+    --control-bg-selected: var(--alpha-12);
+}

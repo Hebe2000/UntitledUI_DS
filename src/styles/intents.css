@@ -1,0 +1,835 @@
+/* ============================================================
+   INTENT TOKENS — contextual / component-level aliases
+   Replace this file with your own intents.css content.
+   ============================================================ */
+:root {
+ /* ══ Primary (configurable — default: gray) ══════════════════════════ */
+
+    /* ── Text ── */
+    --text-primary-soft: var(--primary-1000);
+    --text-primary-solid: var(--gray-0);
+    --text-primary-outline: var(--gray-500);
+    --text-primary-ghost: var(--gray-500);
+    --text-primary-soft-outline: var(--primary-1000);
+
+    /* ── Background ── */
+    --bg-primary-solid: var(--primary-900);
+    --bg-primary-solid-hover: var(--primary-600);
+    --bg-primary-solid-active: var(--primary-500);
+    --bg-primary-soft: var(--alpha-08);
+    --bg-primary-soft-hover: var(--alpha-12);
+    --bg-primary-soft-active: var(--alpha-15);
+    --bg-primary-outline-hover: var(--alpha-08);
+    --bg-primary-outline-active: var(--alpha-10);
+    --bg-primary-ghost-hover: var(--alpha-08);
+    --bg-primary-ghost-active: var(--alpha-10);
+    --bg-primary-soft-outline: var(--alpha-08);
+    --bg-primary-soft-outline-hover: var(--alpha-12);
+    --bg-primary-soft-outline-active: var(--alpha-15);
+
+    /* ── Border ── */
+    --border-primary-outline: var(--alpha-16);
+    --border-primary-outline-hover: var(--alpha-25);
+    --border-primary-outline-active: var(--alpha-25);
+    --border-primary-soft-outline: var(--alpha-16);
+    --border-primary-soft-outline-hover: var(--alpha-25);
+    --border-primary-soft-outline-active: var(--alpha-25);
+
+    /* ══ Neutral (gray) ══════════════════════════════════════════════════ */
+
+    /* ── Text ── */
+    --text-neutral-soft: var(--gray-1000);
+    --text-neutral-solid: var(--gray-0);
+    --text-neutral-outline: var(--gray-1000);
+    --text-neutral-ghost: var(--gray-1000);
+    --text-neutral-soft-outline: var(--gray-1000);
+
+    /* ── Background ── */
+    --bg-neutral-muted: var(--gray-50);
+    --bg-neutral-muted-alpha: color-mix(in oklab, var(--gray-400) 7%, transparent);
+    --bg-neutral-default: var(--gray-75);
+    --bg-neutral-default-alpha: color-mix(in oklab, var(--gray-400) 11%, transparent);
+    --bg-neutral-emphasis: var(--gray-900);
+    --bg-neutral-solid: var(--gray-900);
+    --bg-neutral-solid-hover: var(--gray-600);
+    --bg-neutral-solid-active: var(--gray-500);
+    --bg-neutral-soft: var(--alpha-08);
+    --bg-neutral-soft-hover: var(--alpha-12);
+    --bg-neutral-soft-active: var(--alpha-15);
+    --bg-neutral-outline-hover: var(--alpha-08);
+    --bg-neutral-outline-active: var(--alpha-10);
+    --bg-neutral-ghost-hover: var(--alpha-08);
+    --bg-neutral-ghost-active: var(--alpha-10);
+    --bg-neutral-soft-outline: var(--alpha-08);
+    --bg-neutral-soft-outline-hover: var(--alpha-12);
+    --bg-neutral-soft-outline-active: var(--alpha-15);
+
+    /* ── Border ── */
+    --border-neutral-outline: var(--alpha-16);
+    --border-neutral-outline-hover: var(--alpha-25);
+    --border-neutral-outline-active: var(--alpha-25);
+    --border-neutral-soft-outline: var(--alpha-16);
+    --border-neutral-soft-outline-hover: var(--alpha-25);
+    --border-neutral-soft-outline-active: var(--alpha-25);
+
+    /* ══ Danger (red) ════════════════════════════════════════════════════ */
+
+    /* ── Text ── */
+    --text-danger-muted: var(--red-500);
+    --text-danger-default: var(--red-700);
+    --text-danger-emphasis: var(--red-900);
+    --text-danger-soft: var(--red-800);
+    --text-danger-solid: #fff;
+    --text-danger-outline: var(--red-800);
+    --text-danger-ghost: var(--red-800);
+    --text-danger-soft-outline: var(--red-800);
+
+    /* ── Background ── */
+    --bg-danger-muted: var(--red-25);
+    --bg-danger-muted-alpha: color-mix(in oklab, var(--red-400) 7%, transparent);
+    --bg-danger-default: var(--red-50);
+    --bg-danger-default-alpha: color-mix(in oklab, var(--red-400) 19%, transparent);
+    --bg-danger-emphasis: var(--red-600);
+    --bg-danger-solid: var(--red-600);
+    --bg-danger-solid-hover: var(--red-700);
+    --bg-danger-solid-active: var(--red-800);
+    --bg-danger-soft: color-mix(in oklab, var(--red-500) 20%, transparent);
+    --bg-danger-soft-hover: color-mix(in oklab, var(--red-500) 30%, transparent);
+    --bg-danger-soft-active: color-mix(in oklab, var(--red-500) 36%, transparent);
+    --bg-danger-outline-hover: color-mix(in oklab, var(--red-500) 12%, transparent);
+    --bg-danger-outline-active: color-mix(in oklab, var(--red-500) 20%, transparent);
+    --bg-danger-ghost-hover: color-mix(in oklab, var(--red-500) 12%, transparent);
+    --bg-danger-ghost-active: color-mix(in oklab, var(--red-500) 20%, transparent);
+    --bg-danger-soft-outline: color-mix(in oklab, var(--red-500) 20%, transparent);
+    --bg-danger-soft-outline-hover: color-mix(in oklab, var(--red-500) 30%, transparent);
+    --bg-danger-soft-outline-active: color-mix(in oklab, var(--red-500) 36%, transparent);
+
+    /* ── Border ── */
+    --border-danger-muted: var(--red-75);
+    --border-danger-default: var(--red-100);
+    --border-danger-emphasis: var(--red-500);
+    --border-danger-outline: var(--red-400);
+    --border-danger-outline-hover: var(--red-600);
+    --border-danger-outline-active: var(--red-600);
+    --border-danger-soft-outline: var(--red-200);
+    --border-danger-soft-outline-hover: var(--red-600);
+    --border-danger-soft-outline-active: var(--red-600);
+
+    /* ══ Success (green) ═════════════════════════════════════════════════ */
+
+    /* ── Text ── */
+    --text-success-muted: var(--green-500);
+    --text-success-default: var(--green-700);
+    --text-success-emphasis: var(--green-900);
+    --text-success-soft: var(--green-800);
+    --text-success-solid: #fff;
+    --text-success-outline: var(--green-800);
+    --text-success-ghost: var(--green-800);
+    --text-success-soft-outline: var(--green-800);
+
+    /* ── Background ── */
+    --bg-success-muted: var(--green-25);
+    --bg-success-muted-alpha: color-mix(in oklab, var(--green-400) 8%, transparent);
+    --bg-success-default: var(--green-50);
+    --bg-success-default-alpha: color-mix(in oklab, var(--green-400) 18%, transparent);
+    --bg-success-emphasis: var(--green-600);
+    --bg-success-solid: var(--green-600);
+    --bg-success-solid-hover: var(--green-700);
+    --bg-success-solid-active: var(--green-800);
+    --bg-success-soft: color-mix(in oklab, var(--green-500) 18%, transparent);
+    --bg-success-soft-hover: color-mix(in oklab, var(--green-500) 29%, transparent);
+    --bg-success-soft-active: color-mix(in oklab, var(--green-500) 36%, transparent);
+    --bg-success-outline-hover: color-mix(in oklab, var(--green-500) 15%, transparent);
+    --bg-success-outline-active: color-mix(in oklab, var(--green-500) 21%, transparent);
+    --bg-success-ghost-hover: color-mix(in oklab, var(--green-500) 15%, transparent);
+    --bg-success-ghost-active: color-mix(in oklab, var(--green-500) 21%, transparent);
+    --bg-success-soft-outline: color-mix(in oklab, var(--green-500) 18%, transparent);
+    --bg-success-soft-outline-hover: color-mix(in oklab, var(--green-500) 29%, transparent);
+    --bg-success-soft-outline-active: color-mix(in oklab, var(--green-500) 36%, transparent);
+
+    /* ── Border ── */
+    --border-success-muted: var(--green-75);
+    --border-success-default: var(--green-100);
+    --border-success-emphasis: var(--green-500);
+    --border-success-outline: var(--green-400);
+    --border-success-outline-hover: var(--green-600);
+    --border-success-outline-active: var(--green-600);
+    --border-success-soft-outline: var(--green-200);
+    --border-success-soft-outline-hover: var(--green-600);
+    --border-success-soft-outline-active: var(--green-600);
+
+    /* ══ Warning (orange) ════════════════════════════════════════════════ */
+
+    /* ── Text ── */
+    --text-warning-muted: var(--orange-500);
+    --text-warning-default: var(--orange-700);
+    --text-warning-emphasis: var(--orange-900);
+    --text-warning-soft: var(--orange-800);
+    --text-warning-solid: #fff;
+    --text-warning-outline: var(--orange-800);
+    --text-warning-ghost: var(--orange-800);
+    --text-warning-soft-outline: var(--orange-800);
+
+    /* ── Background ── */
+    --bg-warning-muted: var(--orange-25);
+    --bg-warning-muted-alpha: color-mix(in oklab, var(--orange-400) 7%, transparent);
+    --bg-warning-default: var(--orange-50);
+    --bg-warning-default-alpha: color-mix(in oklab, var(--orange-400) 19%, transparent);
+    --bg-warning-emphasis: var(--orange-600);
+    --bg-warning-solid: var(--orange-600);
+    --bg-warning-solid-hover: var(--orange-700);
+    --bg-warning-solid-active: var(--orange-800);
+    --bg-warning-soft: color-mix(in oklab, var(--orange-500) 18%, transparent);
+    --bg-warning-soft-hover: color-mix(in oklab, var(--orange-500) 30%, transparent);
+    --bg-warning-soft-active: color-mix(in oklab, var(--orange-500) 36%, transparent);
+    --bg-warning-outline-hover: color-mix(in oklab, var(--orange-500) 12%, transparent);
+    --bg-warning-outline-active: color-mix(in oklab, var(--orange-500) 20%, transparent);
+    --bg-warning-ghost-hover: color-mix(in oklab, var(--orange-500) 12%, transparent);
+    --bg-warning-ghost-active: color-mix(in oklab, var(--orange-500) 20%, transparent);
+    --bg-warning-soft-outline: color-mix(in oklab, var(--orange-500) 18%, transparent);
+    --bg-warning-soft-outline-hover: color-mix(in oklab, var(--orange-500) 30%, transparent);
+    --bg-warning-soft-outline-active: color-mix(in oklab, var(--orange-500) 36%, transparent);
+
+    /* ── Border ── */
+    --border-warning-muted: var(--orange-75);
+    --border-warning-default: var(--orange-100);
+    --border-warning-emphasis: var(--orange-500);
+    --border-warning-outline: var(--orange-400);
+    --border-warning-outline-hover: var(--orange-500);
+    --border-warning-outline-active: var(--orange-500);
+    --border-warning-soft-outline: var(--orange-200);
+    --border-warning-soft-outline-hover: var(--orange-500);
+    --border-warning-soft-outline-active: var(--orange-500);
+
+    /* ══ Info (blue) ═════════════════════════════════════════════════════ */
+
+    /* ── Text ── */
+    --text-info-muted: var(--blue-500);
+    --text-info-default: var(--blue-700);
+    --text-info-emphasis: var(--blue-900);
+    --text-info-soft: var(--blue-800);
+    --text-info-solid: #fff;
+    --text-info-outline: var(--blue-800);
+    --text-info-ghost: var(--blue-800);
+    --text-info-soft-outline: var(--blue-800);
+
+    /* ── Background ── */
+    --bg-info-muted: var(--blue-25);
+    --bg-info-muted-alpha: color-mix(in oklab, var(--blue-400) 6%, transparent);
+    --bg-info-default: var(--blue-50);
+    --bg-info-default-alpha: color-mix(in oklab, var(--blue-400) 17%, transparent);
+    --bg-info-emphasis: var(--blue-600);
+    --bg-info-solid: var(--blue-600);
+    --bg-info-solid-hover: var(--blue-700);
+    --bg-info-solid-active: var(--blue-800);
+    --bg-info-soft: color-mix(in oklab, var(--blue-500) 16%, transparent);
+    --bg-info-soft-hover: color-mix(in oklab, var(--blue-500) 25%, transparent);
+    --bg-info-soft-active: color-mix(in oklab, var(--blue-500) 31%, transparent);
+    --bg-info-outline-hover: color-mix(in oklab, var(--blue-500) 13%, transparent);
+    --bg-info-outline-active: color-mix(in oklab, var(--blue-500) 19%, transparent);
+    --bg-info-ghost-hover: color-mix(in oklab, var(--blue-500) 13%, transparent);
+    --bg-info-ghost-active: color-mix(in oklab, var(--blue-500) 19%, transparent);
+    --bg-info-soft-outline: color-mix(in oklab, var(--blue-500) 16%, transparent);
+    --bg-info-soft-outline-hover: color-mix(in oklab, var(--blue-500) 25%, transparent);
+    --bg-info-soft-outline-active: color-mix(in oklab, var(--blue-500) 31%, transparent);
+
+    /* ── Border ── */
+    --border-info-muted: var(--blue-75);
+    --border-info-default: var(--blue-100);
+    --border-info-emphasis: var(--blue-500);
+    --border-info-outline: var(--blue-400);
+    --border-info-outline-hover: var(--blue-600);
+    --border-info-outline-active: var(--blue-600);
+    --border-info-soft-outline: var(--blue-200);
+    --border-info-soft-outline-hover: var(--blue-600);
+    --border-info-soft-outline-active: var(--blue-600);
+
+    /* ══ Discovery (purple) ══════════════════════════════════════════════ */
+
+    /* ── Text ── */
+    --text-discovery-muted: var(--purple-500);
+    --text-discovery-default: var(--purple-700);
+    --text-discovery-emphasis: var(--purple-900);
+    --text-discovery-soft: var(--purple-800);
+    --text-discovery-solid: #fff;
+    --text-discovery-outline: var(--purple-800);
+    --text-discovery-ghost: var(--purple-800);
+    --text-discovery-soft-outline: var(--purple-800);
+
+    /* ── Background ── */
+    --bg-discovery-muted: var(--purple-25);
+    --bg-discovery-muted-alpha: color-mix(in oklab, var(--purple-400) 7%, transparent);
+    --bg-discovery-default: var(--purple-50);
+    --bg-discovery-default-alpha: color-mix(in oklab, var(--purple-400) 18%, transparent);
+    --bg-discovery-emphasis: var(--purple-600);
+    --bg-discovery-solid: var(--purple-600);
+    --bg-discovery-solid-hover: var(--purple-700);
+    --bg-discovery-solid-active: var(--purple-800);
+    --bg-discovery-soft: color-mix(in oklab, var(--purple-500) 16%, transparent);
+    --bg-discovery-soft-hover: color-mix(in oklab, var(--purple-500) 28%, transparent);
+    --bg-discovery-soft-active: color-mix(in oklab, var(--purple-500) 34%, transparent);
+    --bg-discovery-outline-hover: color-mix(in oklab, var(--purple-500) 16%, transparent);
+    --bg-discovery-outline-active: color-mix(in oklab, var(--purple-500) 24%, transparent);
+    --bg-discovery-ghost-hover: color-mix(in oklab, var(--purple-500) 16%, transparent);
+    --bg-discovery-ghost-active: color-mix(in oklab, var(--purple-500) 24%, transparent);
+    --bg-discovery-soft-outline: color-mix(in oklab, var(--purple-500) 16%, transparent);
+    --bg-discovery-soft-outline-hover: color-mix(in oklab, var(--purple-500) 28%, transparent);
+    --bg-discovery-soft-outline-active: color-mix(in oklab, var(--purple-500) 34%, transparent);
+
+    /* ── Border ── */
+    --border-discovery-muted: var(--purple-75);
+    --border-discovery-default: var(--purple-100);
+    --border-discovery-emphasis: var(--purple-500);
+    --border-discovery-outline: var(--purple-400);
+    --border-discovery-outline-hover: var(--purple-500);
+    --border-discovery-outline-active: var(--purple-500);
+    --border-discovery-soft-outline: var(--purple-200);
+    --border-discovery-soft-outline-hover: var(--purple-500);
+    --border-discovery-soft-outline-active: var(--purple-500);
+
+    /* ══ Yellow ══════════════════════════════════════════════════════════ */
+
+    /* ── Text ── */
+    --text-yellow-muted: var(--yellow-500);
+    --text-yellow-default: var(--yellow-700);
+    --text-yellow-emphasis: var(--yellow-900);
+    --text-yellow-soft: var(--yellow-800);
+    --text-yellow-solid: #fff;
+    --text-yellow-outline: var(--yellow-800);
+    --text-yellow-ghost: var(--yellow-800);
+    --text-yellow-soft-outline: var(--yellow-800);
+
+    /* ── Background ── */
+    --bg-yellow-muted: var(--yellow-25);
+    --bg-yellow-muted-alpha: color-mix(in oklab, var(--yellow-100) 24%, transparent);
+    --bg-yellow-default: var(--yellow-50);
+    --bg-yellow-default-alpha: color-mix(in oklab, var(--yellow-100) 49%, transparent);
+    --bg-yellow-emphasis: var(--yellow-600);
+    --bg-yellow-solid: var(--yellow-600);
+    --bg-yellow-solid-hover: var(--yellow-700);
+    --bg-yellow-solid-active: var(--yellow-800);
+    --bg-yellow-soft: color-mix(in oklab, var(--yellow-100) 24%, transparent);
+    --bg-yellow-soft-hover: color-mix(in oklab, var(--yellow-100) 36%, transparent);
+    --bg-yellow-soft-active: color-mix(in oklab, var(--yellow-100) 42%, transparent);
+    --bg-yellow-outline-hover: color-mix(in oklab, var(--yellow-100) 20%, transparent);
+    --bg-yellow-outline-active: color-mix(in oklab, var(--yellow-100) 28%, transparent);
+    --bg-yellow-ghost-hover: color-mix(in oklab, var(--yellow-100) 28%, transparent);
+    --bg-yellow-ghost-active: color-mix(in oklab, var(--yellow-100) 40%, transparent);
+    --bg-yellow-soft-outline: color-mix(in oklab, var(--yellow-100) 24%, transparent);
+    --bg-yellow-soft-outline-hover: color-mix(in oklab, var(--yellow-100) 36%, transparent);
+    --bg-yellow-soft-outline-active: color-mix(in oklab, var(--yellow-100) 42%, transparent);
+
+    /* ── Border ── */
+    --border-yellow-muted: var(--yellow-75);
+    --border-yellow-default: var(--yellow-100);
+    --border-yellow-emphasis: var(--yellow-500);
+    --border-yellow-outline: var(--yellow-400);
+    --border-yellow-outline-hover: var(--yellow-500);
+    --border-yellow-outline-active: var(--yellow-500);
+    --border-yellow-soft-outline: var(--yellow-200);
+    --border-yellow-soft-outline-hover: var(--yellow-500);
+    --border-yellow-soft-outline-active: var(--yellow-500);
+
+    /* ══ Pink ════════════════════════════════════════════════════════════ */
+
+    /* ── Text ── */
+    --text-pink-muted: var(--pink-500);
+    --text-pink-default: var(--pink-700);
+    --text-pink-emphasis: var(--pink-900);
+    --text-pink-soft: var(--pink-800);
+    --text-pink-solid: #fff;
+    --text-pink-outline: var(--pink-800);
+    --text-pink-ghost: var(--pink-800);
+    --text-pink-soft-outline: var(--pink-800);
+
+    /* ── Background ── */
+    --bg-pink-muted: var(--pink-25);
+    --bg-pink-muted-alpha: color-mix(in oklab, var(--pink-400) 7%, transparent);
+    --bg-pink-default: var(--pink-50);
+    --bg-pink-default-alpha: color-mix(in oklab, var(--pink-400) 18%, transparent);
+    --bg-pink-emphasis: var(--pink-600);
+    --bg-pink-solid: var(--pink-600);
+    --bg-pink-solid-hover: var(--pink-700);
+    --bg-pink-solid-active: var(--pink-800);
+    --bg-pink-soft: color-mix(in oklab, var(--pink-500) 20%, transparent);
+    --bg-pink-soft-hover: color-mix(in oklab, var(--pink-500) 30%, transparent);
+    --bg-pink-soft-active: color-mix(in oklab, var(--pink-500) 36%, transparent);
+    --bg-pink-outline-hover: color-mix(in oklab, var(--pink-500) 16%, transparent);
+    --bg-pink-outline-active: color-mix(in oklab, var(--pink-500) 24%, transparent);
+    --bg-pink-ghost-hover: color-mix(in oklab, var(--pink-500) 16%, transparent);
+    --bg-pink-ghost-active: color-mix(in oklab, var(--pink-500) 24%, transparent);
+    --bg-pink-soft-outline: color-mix(in oklab, var(--pink-500) 20%, transparent);
+    --bg-pink-soft-outline-hover: color-mix(in oklab, var(--pink-500) 30%, transparent);
+    --bg-pink-soft-outline-active: color-mix(in oklab, var(--pink-500) 36%, transparent);
+
+    /* ── Border ── */
+    --border-pink-muted: var(--pink-75);
+    --border-pink-default: var(--pink-100);
+    --border-pink-emphasis: var(--pink-500);
+    --border-pink-outline: var(--pink-400);
+    --border-pink-outline-hover: var(--pink-500);
+    --border-pink-outline-active: var(--pink-500);
+    --border-pink-soft-outline: var(--pink-200);
+    --border-pink-soft-outline-hover: var(--pink-500);
+    --border-pink-soft-outline-active: var(--pink-500);
+
+    /* ══ Cyan ════════════════════════════════════════════════════════════ */
+
+    /* ── Text ── */
+    --text-cyan-muted: var(--cyan-500);
+    --text-cyan-default: var(--cyan-700);
+    --text-cyan-emphasis: var(--cyan-900);
+    --text-cyan-soft: var(--cyan-800);
+    --text-cyan-solid: #fff;
+    --text-cyan-outline: var(--cyan-800);
+    --text-cyan-ghost: var(--cyan-800);
+    --text-cyan-soft-outline: var(--cyan-800);
+
+    /* ── Background ── */
+    --bg-cyan-muted: var(--cyan-25);
+    --bg-cyan-muted-alpha: color-mix(in oklab, var(--cyan-400) 8%, transparent);
+    --bg-cyan-default: var(--cyan-50);
+    --bg-cyan-default-alpha: color-mix(in oklab, var(--cyan-400) 17%, transparent);
+    --bg-cyan-emphasis: var(--cyan-600);
+    --bg-cyan-solid: var(--cyan-600);
+    --bg-cyan-solid-hover: var(--cyan-700);
+    --bg-cyan-solid-active: var(--cyan-800);
+    --bg-cyan-soft: color-mix(in oklab, var(--cyan-500) 16%, transparent);
+    --bg-cyan-soft-hover: color-mix(in oklab, var(--cyan-500) 25%, transparent);
+    --bg-cyan-soft-active: color-mix(in oklab, var(--cyan-500) 31%, transparent);
+    --bg-cyan-outline-hover: color-mix(in oklab, var(--cyan-500) 13%, transparent);
+    --bg-cyan-outline-active: color-mix(in oklab, var(--cyan-500) 19%, transparent);
+    --bg-cyan-ghost-hover: color-mix(in oklab, var(--cyan-500) 13%, transparent);
+    --bg-cyan-ghost-active: color-mix(in oklab, var(--cyan-500) 19%, transparent);
+    --bg-cyan-soft-outline: color-mix(in oklab, var(--cyan-500) 16%, transparent);
+    --bg-cyan-soft-outline-hover: color-mix(in oklab, var(--cyan-500) 25%, transparent);
+    --bg-cyan-soft-outline-active: color-mix(in oklab, var(--cyan-500) 31%, transparent);
+
+    /* ── Border ── */
+    --border-cyan-muted: var(--cyan-75);
+    --border-cyan-default: var(--cyan-100);
+    --border-cyan-emphasis: var(--cyan-500);
+    --border-cyan-outline: var(--cyan-400);
+    --border-cyan-outline-hover: var(--cyan-500);
+    --border-cyan-outline-active: var(--cyan-500);
+    --border-cyan-soft-outline: var(--cyan-200);
+    --border-cyan-soft-outline-hover: var(--cyan-500);
+    --border-cyan-soft-outline-active: var(--cyan-500);
+}
+
+/* ── Dark mode ─────────────────────────────────────────────────────── */
+
+[data-theme='dark'] {
+    /* ══ Primary ══ */
+
+    /* ── Text ── */
+    --text-primary-soft: var(--primary-1000);
+    --text-primary-solid: var(--gray-0);
+    --text-primary-outline: var(--gray-800);
+    --text-primary-ghost: var(--gray-800);
+    --text-primary-soft-outline: var(--primary-1000);
+
+    /* ── Background ── */
+    --bg-primary-solid: var(--primary-900);
+    --bg-primary-solid-hover: var(--primary-800);
+    --bg-primary-solid-active: var(--primary-700);
+    --bg-primary-soft: var(--alpha-08);
+    --bg-primary-soft-hover: var(--alpha-12);
+    --bg-primary-soft-active: var(--alpha-15);
+    --bg-primary-outline-hover: var(--alpha-08);
+    --bg-primary-outline-active: var(--alpha-10);
+    --bg-primary-ghost-hover: var(--alpha-08);
+    --bg-primary-ghost-active: var(--alpha-10);
+    --bg-primary-soft-outline: var(--alpha-08);
+    --bg-primary-soft-outline-hover: var(--alpha-12);
+    --bg-primary-soft-outline-active: var(--alpha-15);
+
+    /* ── Border ── */
+    --border-primary-outline: var(--alpha-20);
+    --border-primary-outline-hover: var(--alpha-25);
+    --border-primary-outline-active: var(--alpha-25);
+    --border-primary-soft-outline: var(--alpha-20);
+    --border-primary-soft-outline-hover: var(--alpha-25);
+    --border-primary-soft-outline-active: var(--alpha-25);
+
+    /* ══ Neutral ══ */
+
+    /* ── Text ── */
+    --text-neutral-soft: var(--gray-1000);
+    --text-neutral-solid: var(--gray-0);
+    --text-neutral-outline: var(--gray-1000);
+    --text-neutral-ghost: var(--gray-1000);
+    --text-neutral-soft-outline: var(--gray-1000);
+
+    /* ── Background ── */
+    --bg-neutral-muted: color-mix(in oklab, var(--gray-500) 10%, var(--surface-primary));
+    --bg-neutral-muted-alpha: color-mix(in oklab, var(--gray-600) 5%, transparent);
+    --bg-neutral-default: color-mix(in oklab, var(--gray-500) 25%, var(--surface-primary));
+    --bg-neutral-default-alpha: color-mix(in oklab, var(--gray-600) 13%, transparent);
+    --bg-neutral-emphasis: var(--gray-950);
+    --bg-neutral-solid: var(--gray-900);
+    --bg-neutral-solid-hover: var(--gray-800);
+    --bg-neutral-solid-active: var(--gray-700);
+    --bg-neutral-soft: var(--alpha-08);
+    --bg-neutral-soft-hover: var(--alpha-12);
+    --bg-neutral-soft-active: var(--alpha-15);
+    --bg-neutral-outline-hover: var(--alpha-08);
+    --bg-neutral-outline-active: var(--alpha-10);
+    --bg-neutral-ghost-hover: var(--alpha-08);
+    --bg-neutral-ghost-active: var(--alpha-10);
+    --bg-neutral-soft-outline: var(--alpha-08);
+    --bg-neutral-soft-outline-hover: var(--alpha-12);
+    --bg-neutral-soft-outline-active: var(--alpha-15);
+
+    /* ── Border ── */
+    --border-neutral-outline: var(--alpha-20);
+    --border-neutral-outline-hover: var(--alpha-25);
+    --border-neutral-outline-active: var(--alpha-25);
+    --border-neutral-soft-outline: var(--alpha-20);
+    --border-neutral-soft-outline-hover: var(--alpha-25);
+    --border-neutral-soft-outline-active: var(--alpha-25);
+
+    /* ══ Danger ══ */
+
+    /* ── Text ── */
+    --text-danger-muted: color-mix(in oklab, var(--red-500) 70%, var(--surface-primary));
+    --text-danger-default: var(--red-400);
+    --text-danger-emphasis: var(--red-200);
+    --text-danger-soft: var(--red-100);
+    --text-danger-solid: #fff;
+    --text-danger-outline: var(--red-100);
+    --text-danger-ghost: var(--red-100);
+    --text-danger-soft-outline: var(--red-100);
+
+    /* ── Background ── */
+    --bg-danger-muted: color-mix(in oklab, var(--red-700) 10%, var(--surface-primary));
+    --bg-danger-muted-alpha: color-mix(in oklab, var(--red-600) 8%, transparent);
+    --bg-danger-default: color-mix(in oklab, var(--red-700) 25%, var(--surface-primary));
+    --bg-danger-default-alpha: color-mix(in oklab, var(--red-600) 19%, transparent);
+    --bg-danger-emphasis: var(--red-700);
+    --bg-danger-solid: var(--red-700);
+    --bg-danger-solid-hover: var(--red-800);
+    --bg-danger-solid-active: var(--red-900);
+    --bg-danger-soft: color-mix(in oklab, var(--red-500) 26%, transparent);
+    --bg-danger-soft-hover: color-mix(in oklab, var(--red-500) 36%, transparent);
+    --bg-danger-soft-active: color-mix(in oklab, var(--red-500) 42%, transparent);
+    --bg-danger-outline-hover: color-mix(in oklab, var(--red-500) 12%, transparent);
+    --bg-danger-outline-active: color-mix(in oklab, var(--red-500) 20%, transparent);
+    --bg-danger-ghost-hover: color-mix(in oklab, var(--red-500) 12%, transparent);
+    --bg-danger-ghost-active: color-mix(in oklab, var(--red-500) 20%, transparent);
+    --bg-danger-soft-outline: color-mix(in oklab, var(--red-500) 26%, transparent);
+    --bg-danger-soft-outline-hover: color-mix(in oklab, var(--red-500) 36%, transparent);
+    --bg-danger-soft-outline-active: color-mix(in oklab, var(--red-500) 42%, transparent);
+
+    /* ── Border ── */
+    --border-danger-muted: color-mix(in oklab, var(--red-500) 30%, var(--surface-primary));
+    --border-danger-default: color-mix(in oklab, var(--red-500) 60%, var(--surface-primary));
+    --border-danger-emphasis: var(--red-500);
+    --border-danger-outline: var(--red-400);
+    --border-danger-outline-hover: var(--red-300);
+    --border-danger-outline-active: var(--red-300);
+    --border-danger-soft-outline: var(--red-200);
+    --border-danger-soft-outline-hover: var(--red-300);
+    --border-danger-soft-outline-active: var(--red-300);
+
+    /* ══ Success ══ */
+
+    /* ── Text ── */
+    --text-success-muted: color-mix(in oklab, var(--green-500) 70%, var(--surface-primary));
+    --text-success-default: var(--green-400);
+    --text-success-emphasis: var(--green-200);
+    --text-success-soft: var(--green-100);
+    --text-success-solid: #fff;
+    --text-success-outline: var(--green-100);
+    --text-success-ghost: var(--green-100);
+    --text-success-soft-outline: var(--green-100);
+
+    /* ── Background ── */
+    --bg-success-muted: color-mix(in oklab, var(--green-700) 10%, var(--surface-primary));
+    --bg-success-muted-alpha: color-mix(in oklab, var(--green-600) 7%, transparent);
+    --bg-success-default: color-mix(in oklab, var(--green-700) 25%, var(--surface-primary));
+    --bg-success-default-alpha: color-mix(in oklab, var(--green-600) 17%, transparent);
+    --bg-success-emphasis: var(--green-700);
+    --bg-success-solid: var(--green-700);
+    --bg-success-solid-hover: var(--green-800);
+    --bg-success-solid-active: var(--green-900);
+    --bg-success-soft: color-mix(in oklab, var(--green-500) 24%, transparent);
+    --bg-success-soft-hover: color-mix(in oklab, var(--green-500) 35%, transparent);
+    --bg-success-soft-active: color-mix(in oklab, var(--green-500) 42%, transparent);
+    --bg-success-outline-hover: color-mix(in oklab, var(--green-500) 15%, transparent);
+    --bg-success-outline-active: color-mix(in oklab, var(--green-500) 21%, transparent);
+    --bg-success-ghost-hover: color-mix(in oklab, var(--green-500) 15%, transparent);
+    --bg-success-ghost-active: color-mix(in oklab, var(--green-500) 21%, transparent);
+    --bg-success-soft-outline: color-mix(in oklab, var(--green-500) 24%, transparent);
+    --bg-success-soft-outline-hover: color-mix(in oklab, var(--green-500) 35%, transparent);
+    --bg-success-soft-outline-active: color-mix(in oklab, var(--green-500) 42%, transparent);
+
+    /* ── Border ── */
+    --border-success-muted: color-mix(in oklab, var(--green-500) 30%, var(--surface-primary));
+    --border-success-default: color-mix(in oklab, var(--green-500) 60%, var(--surface-primary));
+    --border-success-emphasis: var(--green-500);
+    --border-success-outline: var(--green-400);
+    --border-success-outline-hover: var(--green-300);
+    --border-success-outline-active: var(--green-300);
+    --border-success-soft-outline: var(--green-200);
+    --border-success-soft-outline-hover: var(--green-300);
+    --border-success-soft-outline-active: var(--green-300);
+
+    /* ══ Warning ══ */
+
+    /* ── Text ── */
+    --text-warning-muted: color-mix(in oklab, var(--orange-500) 70%, var(--surface-primary));
+    --text-warning-default: var(--orange-400);
+    --text-warning-emphasis: var(--orange-200);
+    --text-warning-soft: var(--orange-100);
+    --text-warning-solid: #fff;
+    --text-warning-outline: var(--orange-100);
+    --text-warning-ghost: var(--orange-100);
+    --text-warning-soft-outline: var(--orange-100);
+
+    /* ── Background ── */
+    --bg-warning-muted: color-mix(in oklab, var(--orange-700) 10%, var(--surface-primary));
+    --bg-warning-muted-alpha: color-mix(in oklab, var(--orange-600) 7%, transparent);
+    --bg-warning-default: color-mix(in oklab, var(--orange-700) 25%, var(--surface-primary));
+    --bg-warning-default-alpha: color-mix(in oklab, var(--orange-600) 18%, transparent);
+    --bg-warning-emphasis: var(--orange-700);
+    --bg-warning-solid: var(--orange-700);
+    --bg-warning-solid-hover: var(--orange-800);
+    --bg-warning-solid-active: var(--orange-900);
+    --bg-warning-soft: color-mix(in oklab, var(--orange-500) 24%, transparent);
+    --bg-warning-soft-hover: color-mix(in oklab, var(--orange-500) 36%, transparent);
+    --bg-warning-soft-active: color-mix(in oklab, var(--orange-500) 42%, transparent);
+    --bg-warning-outline-hover: color-mix(in oklab, var(--orange-500) 12%, transparent);
+    --bg-warning-outline-active: color-mix(in oklab, var(--orange-500) 20%, transparent);
+    --bg-warning-ghost-hover: color-mix(in oklab, var(--orange-500) 12%, transparent);
+    --bg-warning-ghost-active: color-mix(in oklab, var(--orange-500) 20%, transparent);
+    --bg-warning-soft-outline: color-mix(in oklab, var(--orange-500) 24%, transparent);
+    --bg-warning-soft-outline-hover: color-mix(in oklab, var(--orange-500) 36%, transparent);
+    --bg-warning-soft-outline-active: color-mix(in oklab, var(--orange-500) 42%, transparent);
+
+    /* ── Border ── */
+    --border-warning-muted: color-mix(in oklab, var(--orange-500) 30%, var(--surface-primary));
+    --border-warning-default: color-mix(in oklab, var(--orange-500) 60%, var(--surface-primary));
+    --border-warning-emphasis: var(--orange-500);
+    --border-warning-outline: var(--orange-400);
+    --border-warning-outline-hover: var(--orange-300);
+    --border-warning-outline-active: var(--orange-300);
+    --border-warning-soft-outline: var(--orange-200);
+    --border-warning-soft-outline-hover: var(--orange-300);
+    --border-warning-soft-outline-active: var(--orange-300);
+
+    /* ══ Info ══ */
+
+    /* ── Text ── */
+    --text-info-muted: color-mix(in oklab, var(--blue-500) 70%, var(--surface-primary));
+    --text-info-default: var(--blue-400);
+    --text-info-emphasis: var(--blue-200);
+    --text-info-soft: var(--blue-100);
+    --text-info-solid: #fff;
+    --text-info-outline: var(--blue-100);
+    --text-info-ghost: var(--blue-100);
+    --text-info-soft-outline: var(--blue-100);
+
+    /* ── Background ── */
+    --bg-info-muted: color-mix(in oklab, var(--blue-700) 10%, var(--surface-primary));
+    --bg-info-muted-alpha: color-mix(in oklab, var(--blue-600) 8%, transparent);
+    --bg-info-default: color-mix(in oklab, var(--blue-700) 25%, var(--surface-primary));
+    --bg-info-default-alpha: color-mix(in oklab, var(--blue-600) 18%, transparent);
+    --bg-info-emphasis: var(--blue-700);
+    --bg-info-solid: var(--blue-700);
+    --bg-info-solid-hover: var(--blue-800);
+    --bg-info-solid-active: var(--blue-900);
+    --bg-info-soft: color-mix(in oklab, var(--blue-500) 22%, transparent);
+    --bg-info-soft-hover: color-mix(in oklab, var(--blue-500) 31%, transparent);
+    --bg-info-soft-active: color-mix(in oklab, var(--blue-500) 37%, transparent);
+    --bg-info-outline-hover: color-mix(in oklab, var(--blue-500) 13%, transparent);
+    --bg-info-outline-active: color-mix(in oklab, var(--blue-500) 19%, transparent);
+    --bg-info-ghost-hover: color-mix(in oklab, var(--blue-500) 13%, transparent);
+    --bg-info-ghost-active: color-mix(in oklab, var(--blue-500) 19%, transparent);
+    --bg-info-soft-outline: color-mix(in oklab, var(--blue-500) 22%, transparent);
+    --bg-info-soft-outline-hover: color-mix(in oklab, var(--blue-500) 31%, transparent);
+    --bg-info-soft-outline-active: color-mix(in oklab, var(--blue-500) 37%, transparent);
+
+    /* ── Border ── */
+    --border-info-muted: color-mix(in oklab, var(--blue-500) 30%, var(--surface-primary));
+    --border-info-default: color-mix(in oklab, var(--blue-500) 60%, var(--surface-primary));
+    --border-info-emphasis: var(--blue-500);
+    --border-info-outline: var(--blue-400);
+    --border-info-outline-hover: var(--blue-300);
+    --border-info-outline-active: var(--blue-300);
+    --border-info-soft-outline: var(--blue-200);
+    --border-info-soft-outline-hover: var(--blue-300);
+    --border-info-soft-outline-active: var(--blue-300);
+
+    /* ══ Discovery ══ */
+
+    /* ── Text ── */
+    --text-discovery-muted: color-mix(in oklab, var(--purple-500) 70%, var(--surface-primary));
+    --text-discovery-default: var(--purple-400);
+    --text-discovery-emphasis: var(--purple-200);
+    --text-discovery-soft: var(--purple-100);
+    --text-discovery-solid: #fff;
+    --text-discovery-outline: var(--purple-100);
+    --text-discovery-ghost: var(--purple-100);
+    --text-discovery-soft-outline: var(--purple-100);
+
+    /* ── Background ── */
+    --bg-discovery-muted: color-mix(in oklab, var(--purple-700) 10%, var(--surface-primary));
+    --bg-discovery-muted-alpha: color-mix(in oklab, var(--purple-600) 8%, transparent);
+    --bg-discovery-default: color-mix(in oklab, var(--purple-700) 25%, var(--surface-primary));
+    --bg-discovery-default-alpha: color-mix(in oklab, var(--purple-600) 19%, transparent);
+    --bg-discovery-emphasis: var(--purple-700);
+    --bg-discovery-solid: var(--purple-700);
+    --bg-discovery-solid-hover: var(--purple-800);
+    --bg-discovery-solid-active: var(--purple-900);
+    --bg-discovery-soft: color-mix(in oklab, var(--purple-500) 22%, transparent);
+    --bg-discovery-soft-hover: color-mix(in oklab, var(--purple-500) 34%, transparent);
+    --bg-discovery-soft-active: color-mix(in oklab, var(--purple-500) 40%, transparent);
+    --bg-discovery-outline-hover: color-mix(in oklab, var(--purple-500) 16%, transparent);
+    --bg-discovery-outline-active: color-mix(in oklab, var(--purple-500) 24%, transparent);
+    --bg-discovery-ghost-hover: color-mix(in oklab, var(--purple-500) 16%, transparent);
+    --bg-discovery-ghost-active: color-mix(in oklab, var(--purple-500) 24%, transparent);
+    --bg-discovery-soft-outline: color-mix(in oklab, var(--purple-500) 22%, transparent);
+    --bg-discovery-soft-outline-hover: color-mix(in oklab, var(--purple-500) 34%, transparent);
+    --bg-discovery-soft-outline-active: color-mix(in oklab, var(--purple-500) 40%, transparent);
+
+    /* ── Border ── */
+    --border-discovery-muted: color-mix(in oklab, var(--purple-500) 30%, var(--surface-primary));
+    --border-discovery-default: color-mix(in oklab, var(--purple-500) 60%, var(--surface-primary));
+    --border-discovery-emphasis: var(--purple-500);
+    --border-discovery-outline: var(--purple-400);
+    --border-discovery-outline-hover: var(--purple-300);
+    --border-discovery-outline-active: var(--purple-300);
+    --border-discovery-soft-outline: var(--purple-200);
+    --border-discovery-soft-outline-hover: var(--purple-300);
+    --border-discovery-soft-outline-active: var(--purple-300);
+
+    /* ══ Yellow ══ */
+
+    /* ── Text ── */
+    --text-yellow-muted: color-mix(in oklab, var(--yellow-500) 70%, var(--surface-primary));
+    --text-yellow-default: var(--yellow-400);
+    --text-yellow-emphasis: var(--yellow-200);
+    --text-yellow-soft: var(--yellow-100);
+    --text-yellow-solid: #fff;
+    --text-yellow-outline: var(--yellow-100);
+    --text-yellow-ghost: var(--yellow-100);
+    --text-yellow-soft-outline: var(--yellow-100);
+
+    /* ── Background ── */
+    --bg-yellow-muted: color-mix(in oklab, var(--yellow-700) 10%, var(--surface-primary));
+    --bg-yellow-muted-alpha: color-mix(in oklab, var(--yellow-700) 10%, transparent);
+    --bg-yellow-default: color-mix(in oklab, var(--yellow-700) 25%, var(--surface-primary));
+    --bg-yellow-default-alpha: color-mix(in oklab, var(--yellow-700) 24%, transparent);
+    --bg-yellow-emphasis: var(--yellow-700);
+    --bg-yellow-solid: var(--yellow-700);
+    --bg-yellow-solid-hover: var(--yellow-800);
+    --bg-yellow-solid-active: var(--yellow-900);
+    --bg-yellow-soft: color-mix(in oklab, var(--yellow-500) 24%, transparent);
+    --bg-yellow-soft-hover: color-mix(in oklab, var(--yellow-500) 36%, transparent);
+    --bg-yellow-soft-active: color-mix(in oklab, var(--yellow-500) 42%, transparent);
+    --bg-yellow-outline-hover: color-mix(in oklab, var(--yellow-500) 16%, transparent);
+    --bg-yellow-outline-active: color-mix(in oklab, var(--yellow-500) 24%, transparent);
+    --bg-yellow-ghost-hover: color-mix(in oklab, var(--yellow-500) 16%, transparent);
+    --bg-yellow-ghost-active: color-mix(in oklab, var(--yellow-500) 24%, transparent);
+    --bg-yellow-soft-outline: color-mix(in oklab, var(--yellow-500) 24%, transparent);
+    --bg-yellow-soft-outline-hover: color-mix(in oklab, var(--yellow-500) 36%, transparent);
+    --bg-yellow-soft-outline-active: color-mix(in oklab, var(--yellow-500) 42%, transparent);
+
+    /* ── Border ── */
+    --border-yellow-muted: color-mix(in oklab, var(--yellow-500) 30%, var(--surface-primary));
+    --border-yellow-default: color-mix(in oklab, var(--yellow-500) 60%, var(--surface-primary));
+    --border-yellow-emphasis: var(--yellow-500);
+    --border-yellow-outline: var(--yellow-400);
+    --border-yellow-outline-hover: var(--yellow-300);
+    --border-yellow-outline-active: var(--yellow-300);
+    --border-yellow-soft-outline: var(--yellow-200);
+    --border-yellow-soft-outline-hover: var(--yellow-300);
+    --border-yellow-soft-outline-active: var(--yellow-300);
+
+    /* ══ Pink ══ */
+
+    /* ── Text ── */
+    --text-pink-muted: color-mix(in oklab, var(--pink-500) 70%, var(--surface-primary));
+    --text-pink-default: var(--pink-400);
+    --text-pink-emphasis: var(--pink-200);
+    --text-pink-soft: var(--pink-100);
+    --text-pink-solid: #fff;
+    --text-pink-outline: var(--pink-100);
+    --text-pink-ghost: var(--pink-100);
+    --text-pink-soft-outline: var(--pink-100);
+
+    /* ── Background ── */
+    --bg-pink-muted: color-mix(in oklab, var(--pink-700) 10%, var(--surface-primary));
+    --bg-pink-muted-alpha: color-mix(in oklab, var(--pink-600) 8%, transparent);
+    --bg-pink-default: color-mix(in oklab, var(--pink-700) 25%, var(--surface-primary));
+    --bg-pink-default-alpha: color-mix(in oklab, var(--pink-600) 19%, transparent);
+    --bg-pink-emphasis: var(--pink-700);
+    --bg-pink-solid: var(--pink-700);
+    --bg-pink-solid-hover: var(--pink-800);
+    --bg-pink-solid-active: var(--pink-900);
+    --bg-pink-soft: color-mix(in oklab, var(--pink-500) 26%, transparent);
+    --bg-pink-soft-hover: color-mix(in oklab, var(--pink-500) 36%, transparent);
+    --bg-pink-soft-active: color-mix(in oklab, var(--pink-500) 42%, transparent);
+    --bg-pink-outline-hover: color-mix(in oklab, var(--pink-500) 16%, transparent);
+    --bg-pink-outline-active: color-mix(in oklab, var(--pink-500) 24%, transparent);
+    --bg-pink-ghost-hover: color-mix(in oklab, var(--pink-500) 16%, transparent);
+    --bg-pink-ghost-active: color-mix(in oklab, var(--pink-500) 24%, transparent);
+    --bg-pink-soft-outline: color-mix(in oklab, var(--pink-500) 26%, transparent);
+    --bg-pink-soft-outline-hover: color-mix(in oklab, var(--pink-500) 36%, transparent);
+    --bg-pink-soft-outline-active: color-mix(in oklab, var(--pink-500) 42%, transparent);
+
+    /* ── Border ── */
+    --border-pink-muted: color-mix(in oklab, var(--pink-500) 30%, var(--surface-primary));
+    --border-pink-default: color-mix(in oklab, var(--pink-500) 60%, var(--surface-primary));
+    --border-pink-emphasis: var(--pink-500);
+    --border-pink-outline: var(--pink-400);
+    --border-pink-outline-hover: var(--pink-300);
+    --border-pink-outline-active: var(--pink-300);
+    --border-pink-soft-outline: var(--pink-200);
+    --border-pink-soft-outline-hover: var(--pink-300);
+    --border-pink-soft-outline-active: var(--pink-300);
+
+    /* ══ Cyan ══ */
+
+    /* ── Text ── */
+    --text-cyan-muted: color-mix(in oklab, var(--cyan-500) 70%, var(--surface-primary));
+    --text-cyan-default: var(--cyan-400);
+    --text-cyan-emphasis: var(--cyan-200);
+    --text-cyan-soft: var(--cyan-100);
+    --text-cyan-solid: #fff;
+    --text-cyan-outline: var(--cyan-100);
+    --text-cyan-ghost: var(--cyan-100);
+    --text-cyan-soft-outline: var(--cyan-100);
+
+    /* ── Background ── */
+    --bg-cyan-muted: color-mix(in oklab, var(--cyan-700) 10%, var(--surface-primary));
+    --bg-cyan-muted-alpha: color-mix(in oklab, var(--cyan-600) 6%, transparent);
+    --bg-cyan-default: color-mix(in oklab, var(--cyan-700) 25%, var(--surface-primary));
+    --bg-cyan-default-alpha: color-mix(in oklab, var(--cyan-600) 16%, transparent);
+    --bg-cyan-emphasis: var(--cyan-700);
+    --bg-cyan-solid: var(--cyan-700);
+    --bg-cyan-solid-hover: var(--cyan-800);
+    --bg-cyan-solid-active: var(--cyan-900);
+    --bg-cyan-soft: color-mix(in oklab, var(--cyan-500) 22%, transparent);
+    --bg-cyan-soft-hover: color-mix(in oklab, var(--cyan-500) 31%, transparent);
+    --bg-cyan-soft-active: color-mix(in oklab, var(--cyan-500) 37%, transparent);
+    --bg-cyan-outline-hover: color-mix(in oklab, var(--cyan-500) 13%, transparent);
+    --bg-cyan-outline-active: color-mix(in oklab, var(--cyan-500) 19%, transparent);
+    --bg-cyan-ghost-hover: color-mix(in oklab, var(--cyan-500) 13%, transparent);
+    --bg-cyan-ghost-active: color-mix(in oklab, var(--cyan-500) 19%, transparent);
+    --bg-cyan-soft-outline: color-mix(in oklab, var(--cyan-500) 22%, transparent);
+    --bg-cyan-soft-outline-hover: color-mix(in oklab, var(--cyan-500) 31%, transparent);
+    --bg-cyan-soft-outline-active: color-mix(in oklab, var(--cyan-500) 37%, transparent);
+
+    /* ── Border ── */
+    --border-cyan-muted: color-mix(in oklab, var(--cyan-500) 30%, var(--surface-primary));
+    --border-cyan-default: color-mix(in oklab, var(--cyan-500) 60%, var(--surface-primary));
+    --border-cyan-emphasis: var(--cyan-500);
+    --border-cyan-outline: var(--cyan-400);
+    --border-cyan-outline-hover: var(--cyan-300);
+    --border-cyan-outline-active: var(--cyan-300);
+    --border-cyan-soft-outline: var(--cyan-200);
+    --border-cyan-soft-outline-hover: var(--cyan-300);
+    --border-cyan-soft-outline-active: var(--cyan-300);
+}

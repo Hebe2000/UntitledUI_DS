@@ -1,0 +1,198 @@
+/* ============================================================
+   PRIMITIVE TOKENS — raw colour palette
+   Replace this file with your own primitives.css content.
+   ============================================================ */
+:root {
+     /* ── Gray ── */
+    --gray-0: #fff;
+    --gray-25: #fcfcfc;
+    --gray-50: #f9f9f9;
+    --gray-75: #f3f3f3;
+    --gray-100: #ededed;
+    --gray-200: #cdcdcd;
+    --gray-300: #afafaf;
+    --gray-400: #8f8f8f;
+    --gray-500: #5d5d5d;
+    --gray-600: #414141;
+    --gray-700: #303030;
+    --gray-800: #212121;
+    --gray-900: #181818;
+    --gray-950: #131313;
+    --gray-1000: #0d0d0d;
+
+    /* ── Alpha (neutral overlay) ── */
+    --alpha-base: #0d0d0d;
+    --alpha-02: color-mix(in oklab, var(--alpha-base) 2%, transparent);
+    --alpha-04: color-mix(in oklab, var(--alpha-base) 4%, transparent);
+    --alpha-05: color-mix(in oklab, var(--alpha-base) 5%, transparent);
+    --alpha-06: color-mix(in oklab, var(--alpha-base) 6%, transparent);
+    --alpha-08: color-mix(in oklab, var(--alpha-base) 8%, transparent);
+    --alpha-10: color-mix(in oklab, var(--alpha-base) 10%, transparent);
+    --alpha-12: color-mix(in oklab, var(--alpha-base) 12%, transparent);
+    --alpha-15: color-mix(in oklab, var(--alpha-base) 15%, transparent);
+    --alpha-16: color-mix(in oklab, var(--alpha-base) 16%, transparent);
+    --alpha-20: color-mix(in oklab, var(--alpha-base) 20%, transparent);
+    --alpha-25: color-mix(in oklab, var(--alpha-base) 25%, transparent);
+    --alpha-30: color-mix(in oklab, var(--alpha-base) 30%, transparent);
+    --alpha-35: color-mix(in oklab, var(--alpha-base) 35%, transparent);
+    --alpha-50: color-mix(in oklab, var(--alpha-base) 50%, transparent);
+
+    --blue-25: #f4f8ff;
+    --blue-50: #e4eeff;
+    --blue-75: #cee1ff;
+    --blue-100: #b2cfff;
+    --blue-200: #9bc0ff;
+    --blue-300: #86b2ff;
+    --blue-400: #699eff;
+    --blue-500: #4a88ff;
+    --blue-600: #2a6ef5;
+    --blue-700: #094ed4;
+    --blue-800: #0031b7;
+    --blue-900: #000f9e;
+    --blue-950: #140058;
+    --blue-1000: #11003c;
+
+    --cyan-25: #f0f8fb;
+    --cyan-50: #e1f0f7;
+    --cyan-75: #c6e3ef;
+    --cyan-100: #a8d4e7;
+    --cyan-200: #8cc7df;
+    --cyan-300: #72bbd8;
+    --cyan-400: #48aace;
+    --cyan-500: #0098c0;
+    --cyan-600: #0080a8;
+    --cyan-700: #006087;
+    --cyan-800: #00476d;
+    --cyan-900: #003055;
+    --cyan-950: #001539;
+    --cyan-1000: #000b2f;
+
+    --green-25: #f1f8f4;
+    --green-50: #e3f1e8;
+    --green-75: #cde5d6;
+    --green-100: #afd6be;
+    --green-200: #99caad;
+    --green-300: #82bf9b;
+    --green-400: #60af84;
+    --green-500: #369d6b;
+    --green-600: #088755;
+    --green-700: #006838;
+    --green-800: #004f20;
+    --green-900: #00380a;
+    --green-950: #001c00;
+    --green-1000: #001200;
+
+    --yellow-25: #fff7d9;
+    --yellow-50: #ffeca8;
+    --yellow-75: #ffe680;
+    --yellow-100: #f6db55;
+    --yellow-200: #e5bb00;
+    --yellow-300: #d7ad00;
+    --yellow-400: #c39a00;
+    --yellow-500: #af8600;
+    --yellow-600: #987000;
+    --yellow-700: #7b5200;
+    --yellow-800: #633a00;
+    --yellow-900: #4c2300;
+    --yellow-950: #320800;
+    --yellow-1000: #270000;
+
+    --orange-25: #fef6f2;
+    --orange-50: #fbe9de;
+    --orange-75: #f8dac6;
+    --orange-100: #f2c4a5;
+    --orange-200: #edb28a;
+    --orange-300: #e9a272;
+    --orange-400: #e18a4b;
+    --orange-500: #d77110;
+    --orange-600: #be5a00;
+    --orange-700: #9c3b00;
+    --orange-800: #811f00;
+    --orange-900: #650000;
+    --orange-950: #380000;
+    --orange-1000: #270000;
+
+    --red-25: #fff5f4;
+    --red-50: #ffe7e5;
+    --red-75: #fdd7d4;
+    --red-100: #fbbfbb;
+    --red-200: #f7aba6;
+    --red-300: #f49993;
+    --red-400: #ee7f7a;
+    --red-500: #e6615e;
+    --red-600: #d93b40;
+    --red-700: #b60922;
+    --red-800: #8d0000;
+    --red-900: #650000;
+    --red-950: #380000;
+    --red-1000: #270000;
+
+    --purple-25: #faf6ff;
+    --purple-50: #f2e9ff;
+    --purple-75: #e9d9ff;
+    --purple-100: #dcc2ff;
+    --purple-200: #d2b0ff;
+    --purple-300: #c99eff;
+    --purple-400: #bd85ff;
+    --purple-500: #b067ff;
+    --purple-600: #a23dff;
+    --purple-700: #8500de;
+    --purple-800: #6000b1;
+    --purple-900: #3f0086;
+    --purple-950: #1d0051;
+    --purple-1000: #12003b;
+
+    --pink-25: #fff4f7;
+    --pink-50: #ffe6ee;
+    --pink-75: #ffd4e2;
+    --pink-100: #ffbbd2;
+    --pink-200: #ffa4c4;
+    --pink-300: #ff8fb7;
+    --pink-400: #ff6ca4;
+    --pink-500: #fa4191;
+    --pink-600: #e6007a;
+    --pink-700: #b30052;
+    --pink-800: #8a0035;
+    --pink-900: #64001b;
+    --pink-950: #380004;
+    --pink-1000: #270001;
+
+    /* ── Primary palette (default: gray — swap to rebrand) ── */
+    --primary-25: var(--gray-25);
+    --primary-50: var(--gray-50);
+    --primary-75: var(--gray-75);
+    --primary-100: var(--gray-100);
+    --primary-200: var(--gray-200);
+    --primary-300: var(--gray-300);
+    --primary-400: var(--gray-400);
+    --primary-500: var(--gray-500);
+    --primary-600: var(--gray-600);
+    --primary-700: var(--gray-700);
+    --primary-800: var(--gray-800);
+    --primary-900: var(--gray-900);
+    --primary-950: var(--gray-950);
+    --primary-1000: var(--gray-1000);
+}
+
+/* ── Dark mode: flipped scales ── */
+[data-theme='dark'] {
+    --gray-0: #0d0d0d;
+    --gray-25: #0f0f0f;
+    --gray-50: #131313;
+    --gray-75: #171717;
+    --gray-100: #1c1c1c;
+    --gray-200: #212121;
+    --gray-300: #303030;
+    --gray-400: #444444;
+    --gray-500: #5d5d5d;
+    --gray-600: #8f8f8f;
+    --gray-700: #afafaf;
+    --gray-800: #dcdcdc;
+    --gray-900: #ededed;
+    --gray-950: #f3f3f3;
+    --gray-1000: #fff;
+
+    --alpha-base: #fff;
+  --color-white: #ffffff;
+  --color-black: #000000;
+}

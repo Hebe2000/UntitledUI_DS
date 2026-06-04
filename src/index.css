@@ -1,0 +1,26 @@
+/* ── Tailwind v4 engine ─────────────────────────────────────── */
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* ── Comply365 token layers (imported in dependency order) ─── */
+@import "./styles/primitives.css";
+@import "./styles/base.css";
+@import "./styles/intents.css";
+@import "./styles/app.css";
+
+/* ── DS doc site base ──────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
+  background-color: var(--surface-page);
+  color: var(--text-default);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
