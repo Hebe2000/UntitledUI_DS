@@ -181,6 +181,63 @@ function ScaleGroup({ scale, tokens }: { scale: string; tokens: Array<{ name: st
   )
 }
 
+// ─── CSS source block ────────────────────────────────────────────────────────
+
+function CSSSourceBlock({ css, label }: { css: string; label: string }) {
+  const [copied, setCopied] = useState(false)
+  const copy = async () => {
+    await navigator.clipboard.writeText(css)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 1500)
+  }
+  return (
+    <div style={{ marginTop: 36 }}>
+      <div style={{
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        marginBottom: 10,
+      }}>
+        <h3 style={{
+          margin: 0, fontSize: 11, fontWeight: 600,
+          textTransform: 'uppercase' as const, letterSpacing: '0.09em',
+          color: 'var(--text-subtle)',
+        }}>
+          {label}
+        </h3>
+        <button
+          onClick={copy}
+          style={{
+            display: 'inline-flex', alignItems: 'center', gap: 5,
+            padding: '4px 11px',
+            fontSize: 11, fontWeight: 500, fontFamily: 'inherit',
+            background: copied ? 'var(--bg-success-muted)' : 'var(--surface-secondary)',
+            border: `1px solid ${copied ? 'var(--border-success-default)' : 'var(--border-default)'}`,
+            borderRadius: 'var(--radius-md)',
+            color: copied ? 'var(--text-success-default)' : 'var(--text-muted)',
+            cursor: 'pointer',
+            transition: 'all 0.12s',
+          }}
+        >
+          {copied ? '✓ Copied' : 'Copy CSS'}
+        </button>
+      </div>
+      <pre style={{
+        margin: 0, padding: '16px 18px',
+        background: 'var(--surface-secondary)',
+        border: '1px solid var(--border-default)',
+        borderRadius: 'var(--radius-xl)',
+        fontSize: 12, fontFamily: 'monospace',
+        color: 'var(--text-default)',
+        lineHeight: 1.65,
+        overflowY: 'auto',
+        overflowX: 'auto',
+        maxHeight: 480,
+      }}>
+        {css}
+      </pre>
+    </div>
+  )
+}
+
 // ─── section components ───────────────────────────────────────────────────────
 
 function useTokens(theme: string) {
@@ -214,6 +271,7 @@ export function PrimitivesSection({ theme }: { theme: string }) {
       {COLOUR_SCALES.filter(s => byScale[s]?.length).map(scale => (
         <ScaleGroup key={scale} scale={scale} tokens={byScale[scale]} />
       ))}
+      <CSSSourceBlock css={primitivesRaw} label="CSS source — primitives.css" />
     </div>
   )
 }
