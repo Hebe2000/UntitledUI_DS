@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 // ─── Components styled with Comply365 intent/semantic tokens ─────────────────
 // Tokens used: --surface-*, --text-*, --border-*, --bg-*-*, --control-*,
 //              --radius-*, --shadow-*, --text-{size}
@@ -356,6 +358,360 @@ export function RiskIndicator({ level, label }: RiskProps) {
       <span style={{ fontSize: 'var(--text-sm)', color: 'var(--text-default)' }}>
         {label ?? riskLabels[level]}
       </span>
+    </div>
+  )
+}
+
+// ─── Toggle ───────────────────────────────────────────────────────────────────
+
+type ToggleSize = 'sm' | 'md'
+
+interface ToggleProps {
+  checked: boolean
+  onChange: (checked: boolean) => void
+  size?: ToggleSize
+  label?: string
+  disabled?: boolean
+}
+
+const toggleTrack: Record<ToggleSize, { width: number; height: number }> = {
+  sm: { width: 32, height: 18 },
+  md: { width: 44, height: 24 },
+}
+const toggleThumb: Record<ToggleSize, { size: number; offset: number }> = {
+  sm: { size: 14, offset: 2 },
+  md: { size: 20, offset: 2 },
+}
+
+export function Toggle({ checked, onChange, size = 'md', label, disabled }: ToggleProps) {
+  const track = toggleTrack[size]
+  const thumb = toggleThumb[size]
+  return (
+    <label style={{ display: 'inline-flex', alignItems: 'center', gap: 8, cursor: disabled ? 'not-allowed' : 'pointer', opacity: disabled ? 0.45 : 1 }}>
+      <button
+        role="switch"
+        aria-checked={checked}
+        onClick={() => !disabled && onChange(!checked)}
+        style={{
+          position: 'relative',
+          width: track.width,
+          height: track.height,
+          borderRadius: track.height,
+          background: checked ? 'var(--bg-primary-solid)' : 'var(--border-default)',
+          border: 'none',
+          padding: 0,
+          cursor: disabled ? 'not-allowed' : 'pointer',
+          transition: 'background 0.15s',
+          flexShrink: 0,
+        }}
+      >
+        <span style={{
+          position: 'absolute',
+          top: thumb.offset,
+          left: checked ? track.width - thumb.size - thumb.offset : thumb.offset,
+          width: thumb.size,
+          height: thumb.size,
+          borderRadius: '50%',
+          background: '#fff',
+          transition: 'left 0.15s',
+          boxShadow: 'var(--shadow-sm)',
+        }} />
+      </button>
+      {label && <span style={{ fontSize: 'var(--text-sm)', color: 'var(--text-default)', fontWeight: 500 }}>{label}</span>}
+    </label>
+  )
+}
+
+// ─── Checkbox ─────────────────────────────────────────────────────────────────
+
+interface CheckboxProps {
+  checked: boolean
+  onChange: (checked: boolean) => void
+  label?: string
+  indeterminate?: boolean
+  disabled?: boolean
+}
+
+export function Checkbox({ checked, onChange, label, indeterminate, disabled }: CheckboxProps) {
+  const filled = checked || indeterminate
+  return (
+    <label style={{ display: 'inline-flex', alignItems: 'center', gap: 8, cursor: disabled ? 'not-allowed' : 'pointer', opacity: disabled ? 0.45 : 1 }}>
+      <button
+        role="checkbox"
+        aria-checked={indeterminate ? 'mixed' : checked}
+        onClick={() => !disabled && onChange(!checked)}
+        style={{
+          width: 16, height: 16,
+          borderRadius: 'var(--radius-sm)',
+          border: filled ? 'none' : '1.5px solid var(--control-border)',
+          background: filled ? 'var(--bg-primary-solid)' : 'var(--surface-primary)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          flexShrink: 0, padding: 0,
+          cursor: disabled ? 'not-allowed' : 'pointer',
+          transition: 'background 0.1s, border-color 0.1s',
+        }}
+      >
+        {checked && !indeterminate && (
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+            <path d="M2 5l2.5 2.5L8 3" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        )}
+        {indeterminate && <span style={{ width: 8, height: 1.5, background: '#fff', borderRadius: 2, display: 'block' }} />}
+      </button>
+      {label && <span style={{ fontSize: 'var(--text-sm)', color: 'var(--text-default)', fontWeight: 500 }}>{label}</span>}
+    </label>
+  )
+}
+
+// ─── Modal ────────────────────────────────────────────────────────────────────
+
+type ModalSize = 'sm' | 'md' | 'lg'
+
+interface ModalProps {
+  open: boolean
+  onClose: () => void
+  title: string
+  description?: string
+  size?: ModalSize
+  children?: React.ReactNode
+  footer?: React.ReactNode
+}
+
+const modalWidths: Record<ModalSize, number> = { sm: 400, md: 520, lg: 640 }
+
+export function Modal({ open, onClose, title, description, size = 'md', children, footer }: ModalProps) {
+  if (!open) return null
+  return (
+    <div
+      onClick={onClose}
+      style={{
+        position: 'fixed', inset: 0, zIndex: 9999,
+        background: 'rgba(0,0,0,0.45)',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        padding: 20,
+      }}
+    >
+      <div
+        onClick={e => e.stopPropagation()}
+        style={{
+          width: '100%', maxWidth: modalWidths[size],
+          background: 'var(--surface-primary)',
+          borderRadius: 'var(--radius-2xl)',
+          boxShadow: 'var(--shadow-2xl)',
+          border: '1px solid var(--border-default)',
+          overflow: 'hidden',
+        }}
+      >
+        <div style={{ padding: '24px 24px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12 }}>
+          <div>
+            <h2 style={{ margin: 0, fontSize: 'var(--text-lg)', fontWeight: 600, color: 'var(--text-emphasis)', lineHeight: 'var(--text-lg--line-height)' }}>
+              {title}
+            </h2>
+            {description && (
+              <p style={{ margin: '4px 0 0', fontSize: 'var(--text-sm)', color: 'var(--text-muted)' }}>{description}</p>
+            )}
+          </div>
+          <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-subtle)', padding: 4, lineHeight: 1, borderRadius: 'var(--radius-sm)', flexShrink: 0 }}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
+          </button>
+        </div>
+        {children && (
+          <div style={{ padding: '16px 24px 24px', fontSize: 'var(--text-sm)', color: 'var(--text-default)', lineHeight: 'var(--text-sm--line-height)' }}>
+            {children}
+          </div>
+        )}
+        {footer && (
+          <div style={{ padding: '16px 24px', borderTop: '1px solid var(--border-default)', display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
+            {footer}
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
+// ─── Tooltip ──────────────────────────────────────────────────────────────────
+
+type TooltipPlacement = 'top' | 'bottom' | 'left' | 'right'
+
+interface TooltipProps {
+  content: string
+  children: React.ReactNode
+  placement?: TooltipPlacement
+}
+
+export function Tooltip({ content, children, placement = 'top' }: TooltipProps) {
+  const [visible, setVisible] = useState(false)
+
+  const pos: React.CSSProperties =
+    placement === 'top'    ? { bottom: '100%', left: '50%', transform: 'translateX(-50%)', marginBottom: 6 } :
+    placement === 'bottom' ? { top: '100%',    left: '50%', transform: 'translateX(-50%)', marginTop: 6 } :
+    placement === 'left'   ? { right: '100%',  top: '50%',  transform: 'translateY(-50%)', marginRight: 6 } :
+                             { left: '100%',   top: '50%',  transform: 'translateY(-50%)', marginLeft: 6 }
+
+  return (
+    <div
+      style={{ position: 'relative', display: 'inline-flex' }}
+      onMouseEnter={() => setVisible(true)}
+      onMouseLeave={() => setVisible(false)}
+    >
+      {children}
+      {visible && (
+        <div style={{
+          position: 'absolute',
+          background: 'var(--bg-neutral-solid)',
+          color: 'var(--text-neutral-solid)',
+          fontSize: 'var(--text-xs)',
+          fontWeight: 500,
+          padding: '5px 10px',
+          borderRadius: 'var(--radius-md)',
+          whiteSpace: 'nowrap',
+          pointerEvents: 'none',
+          zIndex: 9998,
+          boxShadow: 'var(--shadow-md)',
+          ...pos,
+        }}>
+          {content}
+        </div>
+      )}
+    </div>
+  )
+}
+
+// ─── Tabs ─────────────────────────────────────────────────────────────────────
+
+type TabsVariant = 'underline' | 'pill'
+
+interface TabItem {
+  id: string
+  label: string
+  badge?: string | number
+}
+
+interface TabsProps {
+  tabs: TabItem[]
+  active: string
+  onChange: (id: string) => void
+  variant?: TabsVariant
+}
+
+export function Tabs({ tabs, active, onChange, variant = 'underline' }: TabsProps) {
+  const isPill = variant === 'pill'
+  return (
+    <div style={{
+      display: 'flex',
+      gap: isPill ? 4 : 0,
+      borderBottom: isPill ? 'none' : '1px solid var(--border-default)',
+      padding: isPill ? 4 : 0,
+      background: isPill ? 'var(--bg-neutral-muted)' : 'transparent',
+      borderRadius: isPill ? 'var(--radius-lg)' : 0,
+      width: 'fit-content',
+    }}>
+      {tabs.map(tab => {
+        const isActive = tab.id === active
+        return (
+          <button
+            key={tab.id}
+            onClick={() => onChange(tab.id)}
+            style={{
+              display: 'inline-flex', alignItems: 'center', gap: 6,
+              padding: isPill ? '6px 12px' : '8px 12px',
+              border: 'none',
+              borderBottom: !isPill ? `2px solid ${isActive ? 'var(--bg-primary-solid)' : 'transparent'}` : 'none',
+              marginBottom: !isPill ? -1 : 0,
+              cursor: 'pointer',
+              fontFamily: 'inherit',
+              fontWeight: isActive ? 600 : 500,
+              fontSize: 'var(--text-sm)',
+              transition: 'all 0.1s',
+              borderRadius: isPill ? 'var(--radius-md)' : 0,
+              background: isPill && isActive ? 'var(--surface-primary)' : 'transparent',
+              color: isActive ? 'var(--text-emphasis)' : 'var(--text-muted)',
+              boxShadow: isPill && isActive ? 'var(--shadow-sm)' : 'none',
+            }}
+          >
+            {tab.label}
+            {tab.badge !== undefined && (
+              <span style={{
+                fontSize: 'var(--text-xs)', fontWeight: 500,
+                padding: '1px 6px',
+                borderRadius: 'var(--radius-sm)',
+                background: isActive ? 'var(--bg-primary-solid)' : 'var(--bg-neutral-default)',
+                color: isActive ? 'var(--text-primary-solid)' : 'var(--text-muted)',
+              }}>
+                {tab.badge}
+              </span>
+            )}
+          </button>
+        )
+      })}
+    </div>
+  )
+}
+
+// ─── Select ───────────────────────────────────────────────────────────────────
+
+interface SelectOption {
+  value: string
+  label: string
+}
+
+interface SelectProps {
+  options: SelectOption[]
+  value?: string
+  onChange?: (value: string) => void
+  label?: string
+  hint?: string
+  error?: string
+  placeholder?: string
+  disabled?: boolean
+}
+
+export function Select({ options, value, onChange, label, hint, error, placeholder, disabled }: SelectProps) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+      {label && (
+        <label style={{ fontSize: 'var(--text-sm)', fontWeight: 500, color: 'var(--text-default)' }}>
+          {label}
+        </label>
+      )}
+      <div style={{ position: 'relative' }}>
+        <select
+          value={value ?? ''}
+          disabled={disabled}
+          onChange={e => onChange?.(e.target.value)}
+          style={{
+            width: '100%',
+            padding: '10px 36px 10px 14px',
+            fontSize: 'var(--text-base)',
+            border: `1px solid ${error ? 'var(--control-border-invalid)' : 'var(--control-border)'}`,
+            borderRadius: 'var(--radius-md)',
+            background: 'var(--surface-primary)',
+            color: value ? 'var(--control-text)' : 'var(--text-muted)',
+            appearance: 'none',
+            cursor: disabled ? 'not-allowed' : 'pointer',
+            opacity: disabled ? 0.45 : 1,
+            outline: 'none',
+            boxSizing: 'border-box',
+            fontFamily: 'inherit',
+          }}
+        >
+          {placeholder && <option value="" disabled>{placeholder}</option>}
+          {options.map(opt => (
+            <option key={opt.value} value={opt.value}>{opt.label}</option>
+          ))}
+        </select>
+        <span style={{ position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: 'var(--text-subtle)', display: 'flex' }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </span>
+      </div>
+      {(hint || error) && (
+        <p style={{ margin: 0, fontSize: 'var(--text-sm)', color: error ? 'var(--text-danger-default)' : 'var(--text-muted)' }}>
+          {error || hint}
+        </p>
+      )}
     </div>
   )
 }

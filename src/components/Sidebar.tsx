@@ -25,6 +25,12 @@ const NAV: NavGroup[] = [
       { id: 'avatars',   label: 'Avatars'   },
       { id: 'alerts',    label: 'Alerts'    },
       { id: 'risk',      label: 'Risk scale' },
+      { id: 'toggles',   label: 'Toggles'    },
+      { id: 'checkboxes',label: 'Checkboxes' },
+      { id: 'modals',    label: 'Modals'     },
+      { id: 'tooltips',  label: 'Tooltips'   },
+      { id: 'tabs',      label: 'Tabs'       },
+      { id: 'selects',   label: 'Selects'    },
     ],
   },
 ]

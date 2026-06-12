@@ -6,12 +6,14 @@ import { PrimitivesSection, SemanticSection, IntentSection } from './sections/To
 import { IntroSection } from './sections/IntroSection'
 import {
   Button, Badge, Input, Avatar, Alert, RiskIndicator, ShowcaseBlock,
+  Toggle, Checkbox, Modal, Tooltip, Tabs, Select,
 } from './sections/ComponentSection'
 
 type Section =
   | 'intro'
   | 'primitives' | 'semantic' | 'intent'
   | 'buttons' | 'badges' | 'inputs' | 'avatars' | 'alerts' | 'risk'
+  | 'toggles' | 'checkboxes' | 'modals' | 'tooltips' | 'tabs' | 'selects'
 
 const META: Record<Section, { heading: string; desc: string }> = {
   intro:      { heading: 'Introduction',        desc: 'A working reference for the UI patterns, tokens and components that support the Comply365 product.' },
@@ -24,6 +26,12 @@ const META: Record<Section, { heading: string; desc: string }> = {
   avatars:    { heading: 'Avatars',             desc: 'User avatar in all six sizes, with online/away/busy/offline status dots wired to --bg-success-solid, --bg-warning-solid, --bg-danger-solid.' },
   alerts:     { heading: 'Alerts',              desc: 'Feedback banners for info, success, warning and danger. Background from --bg-{intent}-muted, border from --border-{intent}-default.' },
   risk:       { heading: 'Risk scale',          desc: 'Comply365-specific risk level indicator using --color-risk-low through --color-risk-high.' },
+  toggles:    { heading: 'Toggles',             desc: 'Boolean on/off switch in two sizes. Checked state uses --bg-primary-solid; unchecked uses --border-default.' },
+  checkboxes: { heading: 'Checkboxes',          desc: 'Checkbox with checked, unchecked and indeterminate states. Uses --bg-primary-solid for the checked fill and --control-border for the ring.' },
+  modals:     { heading: 'Modals',              desc: 'Overlay dialog with title, description, body and footer slots in three widths. Clicking the backdrop dismisses.' },
+  tooltips:   { heading: 'Tooltips',            desc: 'Hover-activated label in four placements. Uses --bg-neutral-solid and --text-neutral-solid.' },
+  tabs:       { heading: 'Tabs',                desc: 'Underline and pill tab variants. Active tab uses --bg-primary-solid for the indicator or fill. Optional badge counts.' },
+  selects:    { heading: 'Selects',             desc: 'Styled native select matching Input conventions. Uses --control-border, --control-text and --surface-primary.' },
 }
 
 const INTENT_COLORS: Array<{
@@ -45,6 +53,14 @@ export default function App() {
   const { theme, toggle } = useTheme()
   const [active, setActive] = useState<Section>('intro')
   const [dismissedAlert, setDismissedAlert] = useState(false)
+  const [toggleA, setToggleA] = useState(true)
+  const [toggleB, setToggleB] = useState(false)
+  const [checkA, setCheckA] = useState(true)
+  const [checkB, setCheckB] = useState(false)
+  const [openModal, setOpenModal] = useState<'sm' | 'md' | 'lg' | null>(null)
+  const [activeTabUnder, setActiveTabUnder] = useState('overview')
+  const [activeTabPill, setActiveTabPill] = useState('all')
+  const [selectVal, setSelectVal] = useState('')
   const { heading, desc } = META[active]
 
   return (
@@ -284,6 +300,173 @@ export default function App() {
               </ShowcaseBlock>
             </>
           )}
+          {active === 'toggles' && (
+            <>
+              <ShowcaseBlock title="Sizes">
+                <Toggle checked={toggleA} onChange={setToggleA} size="sm" label="Small" />
+                <Toggle checked={toggleB} onChange={setToggleB} size="md" label="Medium" />
+              </ShowcaseBlock>
+              <ShowcaseBlock title="States">
+                <Toggle checked={true}  onChange={() => {}} label="On" />
+                <Toggle checked={false} onChange={() => {}} label="Off" />
+                <Toggle checked={true}  onChange={() => {}} label="Disabled on"  disabled />
+                <Toggle checked={false} onChange={() => {}} label="Disabled off" disabled />
+              </ShowcaseBlock>
+            </>
+          )}
+
+          {active === 'checkboxes' && (
+            <>
+              <ShowcaseBlock title="States">
+                <Checkbox checked={checkA} onChange={setCheckA} label="Checked" />
+                <Checkbox checked={checkB} onChange={setCheckB} label="Unchecked" />
+                <Checkbox checked={false} onChange={() => {}} indeterminate label="Indeterminate" />
+              </ShowcaseBlock>
+              <ShowcaseBlock title="Disabled">
+                <Checkbox checked={true}  onChange={() => {}} label="Checked"   disabled />
+                <Checkbox checked={false} onChange={() => {}} label="Unchecked" disabled />
+              </ShowcaseBlock>
+            </>
+          )}
+
+          {active === 'modals' && (
+            <>
+              <Modal
+                open={openModal !== null}
+                onClose={() => setOpenModal(null)}
+                title="Delete document"
+                description="This action cannot be undone. The document will be permanently removed."
+                size={openModal ?? 'md'}
+                footer={
+                  <>
+                    <Button variant="secondary" onClick={() => setOpenModal(null)}>Cancel</Button>
+                    <Button variant="danger" onClick={() => setOpenModal(null)}>Delete</Button>
+                  </>
+                }
+              >
+                <p style={{ margin: 0 }}>
+                  Are you sure you want to delete <strong>Q3 Safety Report.pdf</strong>? All associated
+                  comments and audit logs will also be removed.
+                </p>
+              </Modal>
+              <ShowcaseBlock title="Sizes">
+                <Button variant="secondary" onClick={() => setOpenModal('sm')}>Open small</Button>
+                <Button variant="secondary" onClick={() => setOpenModal('md')}>Open medium</Button>
+                <Button variant="secondary" onClick={() => setOpenModal('lg')}>Open large</Button>
+              </ShowcaseBlock>
+            </>
+          )}
+
+          {active === 'tooltips' && (
+            <ShowcaseBlock title="Placements">
+              <Tooltip content="Top tooltip" placement="top">
+                <Button variant="secondary">Top</Button>
+              </Tooltip>
+              <Tooltip content="Bottom tooltip" placement="bottom">
+                <Button variant="secondary">Bottom</Button>
+              </Tooltip>
+              <Tooltip content="Left tooltip" placement="left">
+                <Button variant="secondary">Left</Button>
+              </Tooltip>
+              <Tooltip content="Right tooltip" placement="right">
+                <Button variant="secondary">Right</Button>
+              </Tooltip>
+            </ShowcaseBlock>
+          )}
+
+          {active === 'tabs' && (
+            <>
+              <ShowcaseBlock title="Underline">
+                <Tabs
+                  variant="underline"
+                  active={activeTabUnder}
+                  onChange={setActiveTabUnder}
+                  tabs={[
+                    { id: 'overview', label: 'Overview' },
+                    { id: 'documents', label: 'Documents', badge: 12 },
+                    { id: 'activity', label: 'Activity' },
+                    { id: 'settings', label: 'Settings' },
+                  ]}
+                />
+              </ShowcaseBlock>
+              <ShowcaseBlock title="Pill">
+                <Tabs
+                  variant="pill"
+                  active={activeTabPill}
+                  onChange={setActiveTabPill}
+                  tabs={[
+                    { id: 'all', label: 'All', badge: 48 },
+                    { id: 'active', label: 'Active' },
+                    { id: 'archived', label: 'Archived' },
+                  ]}
+                />
+              </ShowcaseBlock>
+            </>
+          )}
+
+          {active === 'selects' && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 0, maxWidth: 440 }}>
+              <ShowcaseBlock title="Default">
+                <div style={{ width: '100%' }}>
+                  <Select
+                    label="Country"
+                    placeholder="Select a country…"
+                    value={selectVal}
+                    onChange={setSelectVal}
+                    options={[
+                      { value: 'au', label: 'Australia' },
+                      { value: 'ca', label: 'Canada' },
+                      { value: 'gb', label: 'United Kingdom' },
+                      { value: 'us', label: 'United States' },
+                    ]}
+                  />
+                </div>
+              </ShowcaseBlock>
+              <ShowcaseBlock title="With hint">
+                <div style={{ width: '100%' }}>
+                  <Select
+                    label="Role"
+                    hint="Determines what the user can access in the workspace."
+                    value="viewer"
+                    onChange={() => {}}
+                    options={[
+                      { value: 'admin',  label: 'Admin' },
+                      { value: 'editor', label: 'Editor' },
+                      { value: 'viewer', label: 'Viewer' },
+                    ]}
+                  />
+                </div>
+              </ShowcaseBlock>
+              <ShowcaseBlock title="Error state">
+                <div style={{ width: '100%' }}>
+                  <Select
+                    label="Department"
+                    error="Please select a department."
+                    placeholder="Select…"
+                    value=""
+                    onChange={() => {}}
+                    options={[
+                      { value: 'ops',    label: 'Operations' },
+                      { value: 'safety', label: 'Safety' },
+                      { value: 'hr',     label: 'HR' },
+                    ]}
+                  />
+                </div>
+              </ShowcaseBlock>
+              <ShowcaseBlock title="Disabled">
+                <div style={{ width: '100%' }}>
+                  <Select
+                    label="Region"
+                    value="apac"
+                    onChange={() => {}}
+                    disabled
+                    options={[{ value: 'apac', label: 'APAC' }]}
+                  />
+                </div>
+              </ShowcaseBlock>
+            </div>
+          )}
+
         </main>
       </div>
     </div>
