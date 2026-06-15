@@ -33,6 +33,12 @@ const NAV: NavGroup[] = [
       { id: 'selects',   label: 'Selects'    },
     ],
   },
+  {
+    heading: 'Examples',
+    items: [
+      { id: 'login-example', label: 'Login page' },
+    ],
+  },
 ]
 
 interface Props {

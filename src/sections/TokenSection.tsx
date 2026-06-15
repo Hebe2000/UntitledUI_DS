@@ -7,7 +7,7 @@ import appRaw from '../styles/app.css?raw'
 // ─── helpers ────────────────────────────────────────────────────────────────
 
 /** Live-resolve a custom property in the current theme */
-function resolveVar(name: string): string {
+export function resolveVar(name: string): string {
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim()
 }
 
@@ -39,7 +39,7 @@ function collectAllCustomProps(): Array<{ name: string; rawValue: string }> {
 
 // ─── sub-components ──────────────────────────────────────────────────────────
 
-function ColorSwatch({ name, rawValue }: { name: string; rawValue: string }) {
+export function ColorSwatch({ name, rawValue }: { name: string; rawValue: string }) {
   const [copied, setCopied] = useState(false)
   const copy = async () => {
     await navigator.clipboard.writeText(`var(${name})`)

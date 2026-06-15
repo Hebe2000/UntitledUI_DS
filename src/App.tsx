@@ -8,20 +8,23 @@ import {
   Button, Badge, Input, Avatar, Alert, RiskIndicator, ShowcaseBlock,
   Toggle, Checkbox, Modal, Tooltip, Tabs, Select,
 } from './sections/ComponentSection'
+import { Plus, ChevronDown, Trash01, SearchLg, AlertTriangle } from '@untitled-ui/icons-react'
+import { LoginPageExample } from './sections/ExamplesSection'
 
 type Section =
   | 'intro'
   | 'primitives' | 'semantic' | 'intent'
   | 'buttons' | 'badges' | 'inputs' | 'avatars' | 'alerts' | 'risk'
   | 'toggles' | 'checkboxes' | 'modals' | 'tooltips' | 'tabs' | 'selects'
+  | 'login-example'
 
 const META: Record<Section, { heading: string; desc: string }> = {
   intro:      { heading: 'Introduction',        desc: 'A working reference for the UI patterns, tokens and components that support the Comply365 product.' },
   primitives: { heading: 'Primitive colours',  desc: 'Raw colour scales — gray, blue, red, green, yellow, orange, cyan, purple, pink and the primary alias. Dark mode flips the gray scale automatically.' },
   semantic:   { heading: 'Semantic tokens',     desc: 'Purpose-driven aliases: surface layers, text hierarchy, border strengths, control states, shadows. These adapt between light and dark.' },
   intent:     { heading: 'Intent tokens',       desc: 'Component-level intent tokens for bg, text and border across every semantic category: primary, neutral, danger, success, warning, info, discovery, yellow, pink and cyan.' },
-  buttons:    { heading: 'Buttons',             desc: 'Primary, secondary, tertiary, ghost, danger and link variants across five sizes — all tokens from --bg-primary-solid, --bg-danger-solid, --border-neutral-outline.' },
-  badges:     { heading: 'Badges',              desc: 'Soft, solid, outline and soft-outline badge styles across all intent colours. Uses --bg-{intent}-muted, --text-{intent}-default, --border-{intent}-muted.' },
+  buttons:    { heading: 'Buttons',             desc: 'Primary, secondary, tertiary, link-gray, link-color and destructive variants across five sizes (xs–xl) — tokens from --bg-primary-solid, --bg-danger-solid, --border-default.' },
+  badges:     { heading: 'Badges',              desc: 'Pill-color, badge-color and badge-modern badge types across all intent colours. Uses --bg-{intent}-muted, --text-{intent}-default, --border-{intent}-muted.' },
   inputs:     { heading: 'Inputs',              desc: 'Text field variants using --control-border, --control-border-invalid, --control-text, --control-placeholder. Error state wires to --text-danger-default.' },
   avatars:    { heading: 'Avatars',             desc: 'User avatar in all six sizes, with online/away/busy/offline status dots wired to --bg-success-solid, --bg-warning-solid, --bg-danger-solid.' },
   alerts:     { heading: 'Alerts',              desc: 'Feedback banners for info, success, warning and danger. Background from --bg-{intent}-muted, border from --border-{intent}-default.' },
@@ -29,9 +32,10 @@ const META: Record<Section, { heading: string; desc: string }> = {
   toggles:    { heading: 'Toggles',             desc: 'Boolean on/off switch in two sizes. Checked state uses --bg-primary-solid; unchecked uses --border-default.' },
   checkboxes: { heading: 'Checkboxes',          desc: 'Checkbox with checked, unchecked and indeterminate states. Uses --bg-primary-solid for the checked fill and --control-border for the ring.' },
   modals:     { heading: 'Modals',              desc: 'Overlay dialog with title, description, body and footer slots in three widths. Clicking the backdrop dismisses.' },
-  tooltips:   { heading: 'Tooltips',            desc: 'Hover-activated label in four placements. Uses --bg-neutral-solid and --text-neutral-solid.' },
-  tabs:       { heading: 'Tabs',                desc: 'Underline and pill tab variants. Active tab uses --bg-primary-solid for the indicator or fill. Optional badge counts.' },
+  tooltips:   { heading: 'Tooltips',            desc: 'Hover-activated label with optional description, in four placements. Uses --bg-neutral-solid and --text-neutral-solid.' },
+  tabs:       { heading: 'Tabs',                desc: 'Underline, button-border and button-gray tab types. Active tab uses --bg-primary-solid for the indicator or fill. Optional icon and badge slots.' },
   selects:    { heading: 'Selects',             desc: 'Styled native select matching Input conventions. Uses --control-border, --control-text and --surface-primary.' },
+  'login-example': { heading: 'Login page', desc: 'A composed example screen built from Input, Button and Alert, using surface, text, control and success tokens together.' },
 }
 
 const INTENT_COLORS: Array<{
@@ -136,75 +140,84 @@ export default function App() {
           {/* ── Component sections ─────────────────────────────── */}
           {active === 'buttons' && (
             <>
-              <ShowcaseBlock title="Variants">
-                <Button variant="primary">Primary</Button>
-                <Button variant="secondary">Secondary</Button>
-                <Button variant="tertiary">Tertiary</Button>
-                <Button variant="ghost">Ghost</Button>
-                <Button variant="danger">Danger</Button>
-                <Button variant="link">Link</Button>
+              <ShowcaseBlock title="Colors">
+                <Button color="primary">Primary</Button>
+                <Button color="secondary">Secondary</Button>
+                <Button color="tertiary">Tertiary</Button>
+                <Button color="link-gray">Link gray</Button>
+                <Button color="link-color">Link color</Button>
+              </ShowcaseBlock>
+              <ShowcaseBlock title="Destructive">
+                <Button color="primary-destructive">Primary</Button>
+                <Button color="secondary-destructive">Secondary</Button>
+                <Button color="tertiary-destructive">Tertiary</Button>
+                <Button color="link-destructive">Link</Button>
               </ShowcaseBlock>
               <ShowcaseBlock title="Sizes">
+                <Button size="xs">Extra small</Button>
                 <Button size="sm">Small</Button>
                 <Button size="md">Medium</Button>
                 <Button size="lg">Large</Button>
-                <Button size="xl">X-Large</Button>
-                <Button size="2xl">2X-Large</Button>
+                <Button size="xl">Extra large</Button>
               </ShowcaseBlock>
               <ShowcaseBlock title="Secondary sizes">
-                <Button variant="secondary" size="sm">Small</Button>
-                <Button variant="secondary" size="md">Medium</Button>
-                <Button variant="secondary" size="lg">Large</Button>
-                <Button variant="secondary" size="xl">X-Large</Button>
+                <Button color="secondary" size="xs">Extra small</Button>
+                <Button color="secondary" size="sm">Small</Button>
+                <Button color="secondary" size="md">Medium</Button>
+                <Button color="secondary" size="lg">Large</Button>
+                <Button color="secondary" size="xl">Extra large</Button>
               </ShowcaseBlock>
               <ShowcaseBlock title="With icons">
-                <Button leadingIcon={<PlusIcon />}>New item</Button>
-                <Button variant="secondary" trailingIcon={<ChevronIcon />}>More options</Button>
-                <Button variant="danger" leadingIcon={<TrashIcon />}>Delete</Button>
+                <Button iconLeading={Plus}>New item</Button>
+                <Button color="secondary" iconTrailing={ChevronDown}>More options</Button>
+                <Button color="primary-destructive" iconLeading={Trash01}>Delete</Button>
+              </ShowcaseBlock>
+              <ShowcaseBlock title="Icon only">
+                <Button iconLeading={Plus} aria-label="Add" />
+                <Button color="secondary" iconLeading={SearchLg} aria-label="Search" />
+              </ShowcaseBlock>
+              <ShowcaseBlock title="Loading">
+                <Button isLoading>Primary</Button>
+                <Button color="secondary" isLoading showTextWhileLoading>Secondary</Button>
               </ShowcaseBlock>
               <ShowcaseBlock title="Disabled">
-                <Button disabled>Primary</Button>
-                <Button variant="secondary" disabled>Secondary</Button>
-                <Button variant="danger" disabled>Danger</Button>
+                <Button isDisabled>Primary</Button>
+                <Button color="secondary" isDisabled>Secondary</Button>
+                <Button color="primary-destructive" isDisabled>Danger</Button>
               </ShowcaseBlock>
             </>
           )}
 
           {active === 'badges' && (
             <>
-              <ShowcaseBlock title="Soft (default)">
+              <ShowcaseBlock title="Pill color (default)">
                 {INTENT_COLORS.map(({ intent }) => (
-                  <Badge key={intent} label={cap(intent)} intent={intent} />
+                  <Badge key={intent} color={intent}>{cap(intent)}</Badge>
                 ))}
               </ShowcaseBlock>
-              <ShowcaseBlock title="Solid">
+              <ShowcaseBlock title="Badge color">
                 {INTENT_COLORS.map(({ intent }) => (
-                  <Badge key={intent} label={cap(intent)} intent={intent} badgeStyle="solid" />
+                  <Badge key={intent} type="badge-color" color={intent}>{cap(intent)}</Badge>
                 ))}
               </ShowcaseBlock>
-              <ShowcaseBlock title="Outline">
+              <ShowcaseBlock title="Badge modern">
                 {INTENT_COLORS.map(({ intent }) => (
-                  <Badge key={intent} label={cap(intent)} intent={intent} badgeStyle="outline" />
-                ))}
-              </ShowcaseBlock>
-              <ShowcaseBlock title="Soft outline">
-                {INTENT_COLORS.map(({ intent }) => (
-                  <Badge key={intent} label={cap(intent)} intent={intent} badgeStyle="soft-outline" />
+                  <Badge key={intent} type="badge-modern" color={intent}>{cap(intent)}</Badge>
                 ))}
               </ShowcaseBlock>
               <ShowcaseBlock title="With dot">
                 {(['neutral','danger','success','warning','info'] as const).map(intent => (
-                  <Badge key={intent} label={cap(intent)} intent={intent} dot />
+                  <Badge key={intent} color={intent} dot>{cap(intent)}</Badge>
                 ))}
               </ShowcaseBlock>
               <ShowcaseBlock title="Sizes — neutral">
-                <Badge label="Small"   size="sm" />
-                <Badge label="Medium"  size="md" />
-                <Badge label="Large"   size="lg" />
+                <Badge size="sm">Small</Badge>
+                <Badge size="md">Medium</Badge>
+                <Badge size="lg">Large</Badge>
               </ShowcaseBlock>
               <ShowcaseBlock title="Removable">
-                <Badge label="Tag" onRemove={() => {}} />
-                <Badge label="Success" intent="success" dot onRemove={() => {}} />
+                <Badge onRemove={() => {}}>Tag</Badge>
+                <Badge color="success" dot onRemove={() => {}}>Success</Badge>
               </ShowcaseBlock>
             </>
           )}
@@ -228,7 +241,7 @@ export default function App() {
               </ShowcaseBlock>
               <ShowcaseBlock title="With leading icon">
                 <div style={{ width: '100%' }}>
-                  <Input label="Search" placeholder="Search documents…" leadingIcon={<SearchIcon />} />
+                  <Input label="Search" placeholder="Search documents…" icon={SearchLg} />
                 </div>
               </ShowcaseBlock>
             </div>
@@ -337,10 +350,12 @@ export default function App() {
                 title="Delete document"
                 description="This action cannot be undone. The document will be permanently removed."
                 size={openModal ?? 'md'}
+                icon={AlertTriangle}
+                iconColor="danger"
                 footer={
                   <>
-                    <Button variant="secondary" onClick={() => setOpenModal(null)}>Cancel</Button>
-                    <Button variant="danger" onClick={() => setOpenModal(null)}>Delete</Button>
+                    <Button color="secondary" onClick={() => setOpenModal(null)}>Cancel</Button>
+                    <Button color="primary-destructive" onClick={() => setOpenModal(null)}>Delete</Button>
                   </>
                 }
               >
@@ -350,38 +365,45 @@ export default function App() {
                 </p>
               </Modal>
               <ShowcaseBlock title="Sizes">
-                <Button variant="secondary" onClick={() => setOpenModal('sm')}>Open small</Button>
-                <Button variant="secondary" onClick={() => setOpenModal('md')}>Open medium</Button>
-                <Button variant="secondary" onClick={() => setOpenModal('lg')}>Open large</Button>
+                <Button color="secondary" onClick={() => setOpenModal('sm')}>Open small</Button>
+                <Button color="secondary" onClick={() => setOpenModal('md')}>Open medium</Button>
+                <Button color="secondary" onClick={() => setOpenModal('lg')}>Open large</Button>
               </ShowcaseBlock>
             </>
           )}
 
           {active === 'tooltips' && (
-            <ShowcaseBlock title="Placements">
-              <Tooltip content="Top tooltip" placement="top">
-                <Button variant="secondary">Top</Button>
-              </Tooltip>
-              <Tooltip content="Bottom tooltip" placement="bottom">
-                <Button variant="secondary">Bottom</Button>
-              </Tooltip>
-              <Tooltip content="Left tooltip" placement="left">
-                <Button variant="secondary">Left</Button>
-              </Tooltip>
-              <Tooltip content="Right tooltip" placement="right">
-                <Button variant="secondary">Right</Button>
-              </Tooltip>
-            </ShowcaseBlock>
+            <>
+              <ShowcaseBlock title="Placements">
+                <Tooltip title="Top tooltip" placement="top">
+                  <Button color="secondary">Top</Button>
+                </Tooltip>
+                <Tooltip title="Bottom tooltip" placement="bottom">
+                  <Button color="secondary">Bottom</Button>
+                </Tooltip>
+                <Tooltip title="Left tooltip" placement="left">
+                  <Button color="secondary">Left</Button>
+                </Tooltip>
+                <Tooltip title="Right tooltip" placement="right">
+                  <Button color="secondary">Right</Button>
+                </Tooltip>
+              </ShowcaseBlock>
+              <ShowcaseBlock title="With description">
+                <Tooltip title="Document status" description="Shows the current review stage and assigned reviewer." placement="top">
+                  <Button color="secondary">Hover for details</Button>
+                </Tooltip>
+              </ShowcaseBlock>
+            </>
           )}
 
           {active === 'tabs' && (
             <>
               <ShowcaseBlock title="Underline">
                 <Tabs
-                  variant="underline"
-                  active={activeTabUnder}
+                  type="underline"
+                  selectedKey={activeTabUnder}
                   onChange={setActiveTabUnder}
-                  tabs={[
+                  items={[
                     { id: 'overview', label: 'Overview' },
                     { id: 'documents', label: 'Documents', badge: 12 },
                     { id: 'activity', label: 'Activity' },
@@ -389,12 +411,25 @@ export default function App() {
                   ]}
                 />
               </ShowcaseBlock>
-              <ShowcaseBlock title="Pill">
+              <ShowcaseBlock title="Button border">
                 <Tabs
-                  variant="pill"
-                  active={activeTabPill}
+                  type="button-border"
+                  selectedKey={activeTabPill}
                   onChange={setActiveTabPill}
-                  tabs={[
+                  items={[
+                    { id: 'all', label: 'All', badge: 48 },
+                    { id: 'active', label: 'Active' },
+                    { id: 'archived', label: 'Archived' },
+                  ]}
+                />
+              </ShowcaseBlock>
+              <ShowcaseBlock title="Button gray">
+                <Tabs
+                  type="button-gray"
+                  size="md"
+                  selectedKey={activeTabPill}
+                  onChange={setActiveTabPill}
+                  items={[
                     { id: 'all', label: 'All', badge: 48 },
                     { id: 'active', label: 'Active' },
                     { id: 'archived', label: 'Archived' },
@@ -467,23 +502,13 @@ export default function App() {
             </div>
           )}
 
+          {/* ── Example sections ───────────────────────────────── */}
+          {active === 'login-example' && <LoginPageExample theme={theme} />}
+
         </main>
       </div>
     </div>
   )
 }
 
-// ── tiny icons ────────────────────────────────────────────────────────────────
-function PlusIcon() {
-  return <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-}
-function ChevronIcon() {
-  return <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-}
-function TrashIcon() {
-  return <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/></svg>
-}
-function SearchIcon() {
-  return <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-}
 function cap(s: string) { return s.charAt(0).toUpperCase() + s.slice(1) }
