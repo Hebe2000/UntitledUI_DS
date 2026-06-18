@@ -1,51 +1,20 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Button, Input } from './ComponentSection'
-import { ColorSwatch, resolveVar } from './TokenSection'
+import { TokenInspector, type TokenDef } from '../components/TokenInspector'
 import heroImg from '../assets/login-hero.jpg'
 import logoPaths from '../assets/comply-logo-paths'
 
-// ─── tokens used by this example ───────────────────────────────────────────
-
-const EXAMPLE_TOKENS = [
-  '--bg-primary-solid',
-  '--text-primary-solid',
-  '--surface-primary',
-  '--border-default',
-  '--control-border',
-  '--control-text',
-  '--text-info-default',
-  '--text-default',
-  '--text-muted',
+const INSPECTOR_TOKENS: TokenDef[] = [
+  { name: 'surface-primary',    cssVar: '--surface-primary',    property: 'background-color' },
+  { name: 'text-default',       cssVar: '--text-default',       property: 'color' },
+  { name: 'text-muted',         cssVar: '--text-muted',         property: 'color' },
+  { name: 'text-info-default',  cssVar: '--text-info-default',  property: 'color' },
+  { name: 'bg-primary-solid',   cssVar: '--bg-primary-solid',   property: 'background-color' },
+  { name: 'text-primary-solid', cssVar: '--text-primary-solid', property: 'color' },
+  { name: 'border-default',     cssVar: '--border-default',     property: 'border-color' },
+  { name: 'control-border',     cssVar: '--control-border',     property: 'border-color' },
+  { name: 'control-text',       cssVar: '--control-text',       property: 'color' },
 ]
-
-function TokensUsed({ theme }: { theme: string }) {
-  const [tokens, setTokens] = useState<Array<{ name: string; rawValue: string }>>([])
-
-  useEffect(() => {
-    const id = setTimeout(() => {
-      setTokens(EXAMPLE_TOKENS.map(name => ({ name, rawValue: resolveVar(name) })))
-    }, 60)
-    return () => clearTimeout(id)
-  }, [theme])
-
-  return (
-    <div style={{ marginTop: 28 }}>
-      <h4 style={{
-        margin: '0 0 10px',
-        fontSize: 12,
-        fontWeight: 600,
-        color: 'var(--text-muted)',
-        textTransform: 'uppercase',
-        letterSpacing: '0.08em',
-      }}>
-        Tokens used in this example
-      </h4>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-        {tokens.map(t => <ColorSwatch key={t.name} {...t} />)}
-      </div>
-    </div>
-  )
-}
 
 function ComplyLogo() {
   return (
@@ -76,83 +45,103 @@ export function LoginPageExample({ theme }: { theme: string }) {
   const [username, setUsername] = useState('')
 
   return (
-    <>
-    <div style={{
-      display: 'flex',
-      aspectRatio: '16 / 9',
-      borderRadius: 'var(--radius-xl)',
-      overflow: 'hidden',
-      border: '1px solid var(--border-default)',
-      boxShadow: 'var(--shadow-md)',
-    }}>
-      {/* ── left pane: login form ──────────────────────────────── */}
-      <div style={{
-        flex: '0 0 42%',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        gap: 24,
-        padding: '48px 64px',
-        background: '#ffffff',
-        overflow: 'auto',
-      }}>
-        <ComplyLogo />
+    <TokenInspector tokens={INSPECTOR_TOKENS} theme={theme} exampleLabel="Login page example">
+      <div
+        data-token="border-default"
+        style={{
+          display: 'flex',
+          aspectRatio: '16 / 9',
+          borderRadius: 'var(--radius-xl)',
+          overflow: 'hidden',
+          border: '1px solid var(--border-default)',
+          boxShadow: 'var(--shadow-md)',
+        }}
+      >
+        {/* ── left pane: login form ──────────────────────────────── */}
+        <div
+          data-token="surface-primary"
+          style={{
+            flex: '0 0 42%',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            gap: 24,
+            padding: '48px 64px',
+            background: 'var(--surface-primary)',
+            overflow: 'auto',
+          }}
+        >
+          <ComplyLogo />
 
-        <div>
-          <h2 style={{
-            margin: '0 0 8px',
-            fontSize: 32,
-            fontWeight: 600,
-            color: '#0d0d0d',
-            letterSpacing: '-1px',
-            lineHeight: '36px',
-          }}>
-            Log into your account
-          </h2>
-          <p style={{ margin: 0, fontSize: 16, color: '#8f8f8f', letterSpacing: '-0.2px' }}>
-            Please enter your organisation code.
+          <div>
+            <h2
+              data-token="text-default"
+              style={{
+                margin: '0 0 8px',
+                fontSize: 32,
+                fontWeight: 600,
+                color: 'var(--text-default)',
+                letterSpacing: '-1px',
+                lineHeight: '36px',
+              }}
+            >
+              Log into your account
+            </h2>
+            <p
+              data-token="text-muted"
+              style={{ margin: 0, fontSize: 16, color: 'var(--text-muted)', letterSpacing: '-0.2px' }}
+            >
+              Please enter your organisation code.
+            </p>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+            <Input
+              data-token="control-border control-text"
+              label="Organisation Code"
+              value={orgCode}
+              onChange={e => setOrgCode(e.target.value)}
+            />
+            <div>
+              <Input
+                data-token="control-border control-text"
+                label="Username"
+                placeholder="Enter username"
+                value={username}
+                onChange={e => setUsername(e.target.value)}
+              />
+              <a
+                href="#"
+                data-token="text-info-default"
+                style={{ display: 'inline-block', marginTop: 8, fontSize: 14, color: 'var(--text-info-default)', textDecoration: 'none' }}
+              >
+                I forgot my username
+              </a>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 4 }}>
+              <Button data-token="bg-primary-solid text-primary-solid" color="primary" size="lg" style={{ width: '100%' }}>Next</Button>
+              <Button data-token="border-default text-default" color="secondary" size="lg" style={{ width: '100%' }} onClick={() => { setOrgCode(''); setUsername('') }}>Clear All</Button>
+            </div>
+          </div>
+
+          <p
+            data-token="text-default"
+            style={{ margin: 0, fontSize: 14, color: 'var(--text-default)', lineHeight: '20px' }}
+          >
+            For assistance with usernames and passwords please contact your administrator.
           </p>
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-          <Input
-            label="Organisation Code"
-            value={orgCode}
-            onChange={e => setOrgCode(e.target.value)}
+        {/* ── right pane: hero image ─────────────────────────────── */}
+        <div style={{ flex: '1 1 auto', minWidth: 0 }}>
+          <img
+            src={heroImg}
+            alt=""
+            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
           />
-          <div>
-            <Input
-              label="Username"
-              placeholder="Enter username"
-              value={username}
-              onChange={e => setUsername(e.target.value)}
-            />
-            <a href="#" style={{ display: 'inline-block', marginTop: 8, fontSize: 14, color: 'var(--text-info-default)', textDecoration: 'none' }}>
-              I forgot my username
-            </a>
-          </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 4 }}>
-            <Button color="primary" size="lg" style={{ width: '100%' }}>Next</Button>
-            <Button color="secondary" size="lg" style={{ width: '100%' }} onClick={() => { setOrgCode(''); setUsername('') }}>Clear All</Button>
-          </div>
         </div>
-
-        <p style={{ margin: 0, fontSize: 14, color: 'var(--text-default)', lineHeight: '20px' }}>
-          For assistance with usernames and passwords please contact your administrator.
-        </p>
       </div>
-
-      {/* ── right pane: hero image ─────────────────────────────── */}
-      <div style={{ flex: '1 1 auto', minWidth: 0 }}>
-        <img
-          src={heroImg}
-          alt=""
-          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-        />
-      </div>
-    </div>
-    <TokensUsed theme={theme} />
-    </>
+    </TokenInspector>
   )
 }
