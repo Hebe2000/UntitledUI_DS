@@ -66,7 +66,10 @@ export function ColorSwatch({ name, rawValue }: { name: string; rawValue: string
       <div
         style={{
           height: 56,
-          background: `var(${name})`,
+          background: name.startsWith('--border-') ? 'var(--surface-primary)' : `var(${name})`,
+          border: name.startsWith('--border-') ? `1px solid var(${name})` : 'none',
+          borderBottom: name.startsWith('--border-') ? `1px solid var(${name})` : 'none',
+          boxSizing: 'border-box',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -111,8 +114,9 @@ function TokenRow({ name, rawValue }: { name: string; rawValue: string }) {
         {isColourLike ? (
           <div style={{
             width: 24, height: 24, borderRadius: 6,
-            background: `var(${name})`,
-            border: '1px solid var(--border-default)',
+            background: name.startsWith('--border-') ? 'var(--surface-primary)' : `var(${name})`,
+            border: name.startsWith('--border-') ? `1px solid var(${name})` : '1px solid var(--border-default)',
+            boxSizing: 'border-box',
             flexShrink: 0,
           }} />
         ) : (
@@ -318,6 +322,37 @@ const INTENT_CATEGORIES = [
   'discovery', 'yellow', 'pink', 'cyan',
 ]
 
+const PROPERTY_GROUPS = [
+  { key: 'text',   label: 'Text',       prefix: '--text-' },
+  { key: 'bg',     label: 'Background', prefix: '--bg-' },
+  { key: 'border', label: 'Border',     prefix: '--border-' },
+] as const
+
+function GroupedIntentTokens({ tokens }: { tokens: Array<{ name: string; rawValue: string }> }) {
+  const groups = PROPERTY_GROUPS.map(g => ({
+    ...g,
+    tokens: tokens.filter(t => t.name.startsWith(g.prefix)),
+  })).filter(g => g.tokens.length > 0)
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 20, padding: '16px 0' }}>
+      {groups.map(g => (
+        <div key={g.key}>
+          <h5 style={{
+            margin: '0 0 8px', padding: '0 16px',
+            fontSize: 11, fontWeight: 600, color: 'var(--text-subtle)',
+            textTransform: 'uppercase', letterSpacing: '0.08em',
+          }}>
+            {g.label}
+            <span style={{ fontWeight: 400, marginLeft: 6 }}>{g.tokens.length}</span>
+          </h5>
+          <TokenTable tokens={g.tokens} />
+        </div>
+      ))}
+    </div>
+  )
+}
+
 export function IntentSection({ theme }: { theme: string }) {
   const all = useTokens(theme)
   const [expanded, setExpanded] = useState<string | null>('danger')
@@ -333,7 +368,6 @@ export function IntentSection({ theme }: { theme: string }) {
     }
   }
 
-  // Also grab risk colors and other color-* aliases
   const appTokens = all.filter(t =>
     /^--color-risk-/.test(t.name) ||
     /^--radius-/.test(t.name) ||
@@ -346,7 +380,6 @@ export function IntentSection({ theme }: { theme: string }) {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-      {/* Intent colour categories — accordion */}
       {INTENT_CATEGORIES.filter(c => byCategory[c]?.length).map(cat => (
         <div key={cat} style={{ border: '1px solid var(--border-default)', borderRadius: 'var(--radius-xl)' }}>
           <button
@@ -382,13 +415,12 @@ export function IntentSection({ theme }: { theme: string }) {
           </button>
           {expanded === cat && (
             <div style={{ borderTop: '1px solid var(--border-default)' }}>
-              <TokenTable tokens={byCategory[cat]} />
+              <GroupedIntentTokens tokens={byCategory[cat]} />
             </div>
           )}
         </div>
       ))}
 
-      {/* App / utility tokens */}
       {appTokens.length > 0 && (
         <div>
           <h3 style={{ margin: '16px 0 10px', fontSize: 12, fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>

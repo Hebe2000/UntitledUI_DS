@@ -103,6 +103,7 @@ function Swatch({ token, active, onToggle }: {
   token: TokenDef; active: boolean; onToggle: (name: string) => void
 }) {
   const resolved = getResolved(token)
+  const isBorder = token.property === 'border-color'
 
   return (
     <button
@@ -118,8 +119,9 @@ function Swatch({ token, active, onToggle }: {
       <div style={{
         width: 56, height: 56,
         borderRadius: 'var(--radius-md, 6px)',
-        background: resolved || '#ccc',
-        border: active ? `2px solid ${ACCENT}` : '1px solid var(--border-default)',
+        background: isBorder ? 'var(--surface-primary)' : (resolved || '#ccc'),
+        border: active ? `2px solid ${ACCENT}` : isBorder ? `1px solid ${resolved || '#ccc'}` : '1px solid var(--border-default)',
+        boxSizing: 'border-box',
         boxShadow: active ? `0 0 0 2px ${ACCENT}33` : 'none',
         transition: 'border 120ms ease, box-shadow 120ms ease',
       }} />
