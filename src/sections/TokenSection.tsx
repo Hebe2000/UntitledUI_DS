@@ -328,27 +328,112 @@ const PROPERTY_GROUPS = [
   { key: 'border', label: 'Border',     prefix: '--border-' },
 ] as const
 
-function GroupedIntentTokens({ tokens }: { tokens: Array<{ name: string; rawValue: string }> }) {
+const VARIANT_ORDER = ['semantic', 'solid', 'soft', 'outline', 'ghost', 'soft-outline'] as const
+const VARIANT_LABELS: Record<string, string> = {
+  semantic: 'Semantic', solid: 'Solid', soft: 'Soft',
+  outline: 'Outline', ghost: 'Ghost', 'soft-outline': 'Soft Outline',
+}
+
+function getVariant(tokenName: string, propertyPrefix: string, intent: string): string {
+  const suffix = tokenName.slice(propertyPrefix.length + intent.length + 1)
+  if (suffix.startsWith('soft-outline')) return 'soft-outline'
+  if (suffix.startsWith('solid')) return 'solid'
+  if (suffix.startsWith('soft')) return 'soft'
+  if (suffix.startsWith('outline')) return 'outline'
+  if (suffix.startsWith('ghost')) return 'ghost'
+  return 'semantic'
+}
+
+function VariantCard({ label, tokens }: {
+  label: string
+  tokens: Array<{ name: string; rawValue: string }>
+}) {
+  return (
+    <div style={{
+      border: '1px solid var(--border-default)',
+      borderRadius: 'var(--radius-lg, 10px)',
+      overflow: 'hidden',
+    }}>
+      <div style={{
+        padding: '8px 12px',
+        background: 'var(--surface-secondary)',
+        borderBottom: '1px solid var(--border-default)',
+        fontSize: 11, fontWeight: 600, color: 'var(--text-subtle)',
+        textTransform: 'uppercase', letterSpacing: '0.08em',
+      }}>
+        {label}
+      </div>
+      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <tbody>
+          {tokens.map(t => <TokenRow key={t.name} {...t} />)}
+        </tbody>
+      </table>
+    </div>
+  )
+}
+
+function VariantTokenCards({ tokens, propertyPrefix, intent }: {
+  tokens: Array<{ name: string; rawValue: string }>
+  propertyPrefix: string
+  intent: string
+}) {
+  const byVariant: Record<string, Array<{ name: string; rawValue: string }>> = {}
+  for (const t of tokens) {
+    const v = getVariant(t.name, propertyPrefix, intent)
+    if (!byVariant[v]) byVariant[v] = []
+    byVariant[v].push(t)
+  }
+  const activeVariants = VARIANT_ORDER.filter(v => byVariant[v]?.length)
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+      {activeVariants.map(variant => (
+        <VariantCard
+          key={variant}
+          label={VARIANT_LABELS[variant]}
+          tokens={byVariant[variant]}
+        />
+      ))}
+    </div>
+  )
+}
+
+function GroupedIntentTokens({ tokens, intent }: { tokens: Array<{ name: string; rawValue: string }>; intent: string }) {
   const groups = PROPERTY_GROUPS.map(g => ({
     ...g,
     tokens: tokens.filter(t => t.name.startsWith(g.prefix)),
   })).filter(g => g.tokens.length > 0)
 
+  const [activeTab, setActiveTab] = useState(groups[0]?.key ?? 'text')
+  const activeGroup = groups.find(g => g.key === activeTab) ?? groups[0]
+
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 20, padding: '16px 0' }}>
-      {groups.map(g => (
-        <div key={g.key}>
-          <h5 style={{
-            margin: '0 0 8px', padding: '0 16px',
-            fontSize: 11, fontWeight: 600, color: 'var(--text-subtle)',
-            textTransform: 'uppercase', letterSpacing: '0.08em',
-          }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+      <div style={{ display: 'flex', gap: 4, borderBottom: '1px solid var(--border-default)', paddingBottom: 0 }}>
+        {groups.map(g => (
+          <button
+            key={g.key}
+            type="button"
+            onClick={() => setActiveTab(g.key)}
+            style={{
+              padding: '8px 16px',
+              fontSize: 13,
+              fontWeight: 600,
+              color: activeTab === g.key ? 'var(--text-default)' : 'var(--text-muted)',
+              background: 'none',
+              border: 'none',
+              borderBottom: activeTab === g.key ? '2px solid var(--text-default)' : '2px solid transparent',
+              cursor: 'pointer',
+              marginBottom: -1,
+            }}
+          >
             {g.label}
-            <span style={{ fontWeight: 400, marginLeft: 6 }}>{g.tokens.length}</span>
-          </h5>
-          <TokenTable tokens={g.tokens} />
-        </div>
-      ))}
+          </button>
+        ))}
+      </div>
+      {activeGroup && (
+        <VariantTokenCards tokens={activeGroup.tokens} propertyPrefix={activeGroup.prefix} intent={intent} />
+      )}
     </div>
   )
 }
@@ -414,8 +499,8 @@ export function IntentSection({ theme }: { theme: string }) {
             </span>
           </button>
           {expanded === cat && (
-            <div style={{ borderTop: '1px solid var(--border-default)' }}>
-              <GroupedIntentTokens tokens={byCategory[cat]} />
+            <div style={{ borderTop: '1px solid var(--border-default)', padding: 16 }}>
+              <GroupedIntentTokens tokens={byCategory[cat]} intent={cat} />
             </div>
           )}
         </div>
